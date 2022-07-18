@@ -5,9 +5,11 @@ defmodule Rh.Repo.Migrations.CreateTermsTable do
     create table(:terms) do
       add :name, :string
       add :description, :string
-      add :company_id, references(:company, type: :binary_id)
+      add :company_id, references(:companies, type: :binary_id)
 
       timestamps()
     end
+
+    create unique_index(:terms, [:name])
   end
 end

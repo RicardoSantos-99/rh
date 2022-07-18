@@ -6,7 +6,7 @@ defmodule Rh.Repo.Migrations.CreateOccupationTable do
       add :name, :string
       add :description, :string
       add :code, :integer
-      add :company_id, references(:company, type: :binary_id)
+      add :company_id, references(:companies, type: :binary_id)
 
       timestamps()
     end

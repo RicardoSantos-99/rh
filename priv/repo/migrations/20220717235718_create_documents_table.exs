@@ -5,9 +5,11 @@ defmodule Rh.Repo.Migrations.CreateDocumentsTable do
     create table(:documents) do
       add :name, :string
       add :description, :string
-      add :company_id, references(:company, type: :binary_id)
+      add :company_id, references(:companies, type: :binary_id)
 
       timestamps()
     end
+
+    create unique_index(:documents, [:name])
   end
 end
