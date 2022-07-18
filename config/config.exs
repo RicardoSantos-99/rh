@@ -10,6 +10,10 @@ import Config
 config :rh,
   ecto_repos: [Rh.Repo]
 
+config :rh, Rh.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :rh, RhWeb.Endpoint,
   url: [host: "localhost"],
