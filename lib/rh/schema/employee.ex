@@ -2,8 +2,9 @@ defmodule Rh.Schema.Employee do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Ecto.{Enum, Changeset}
+  alias Ecto.Enum
   alias Rh.Schema.Affiliate
+  alias Rh.Utils.Password
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -32,12 +33,6 @@ defmodule Rh.Schema.Employee do
     |> validate_length(:password, min: 8)
     |> unique_constraint([:email])
     |> unique_constraint([:cpf])
-    |> put_password_hash()
+    |> Password.put_password_hash()
   end
-
-  defp put_password_hash(%Changeset{valid?: true, changes: %{password: password}} = changeset) do
-    change(changeset, Pbkdf2.add_hash(password))
-  end
-
-  defp put_password_hash(changeset), do: changeset
 end

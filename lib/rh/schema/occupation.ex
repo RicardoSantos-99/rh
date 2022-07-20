@@ -2,7 +2,7 @@ defmodule Rh.Schema.Occupation do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.Schema.Company
+  alias Rh.Schema.{Company, Admission}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -15,6 +15,7 @@ defmodule Rh.Schema.Occupation do
     field :code, :integer
 
     belongs_to :company, Company
+    belongs_to :admission, Admission
 
     timestamps()
   end

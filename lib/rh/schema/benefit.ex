@@ -1,8 +1,8 @@
-defmodule Rh.Benefit do
+defmodule Rh.Schema.Benefit do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.Schema.Company
+  alias Rh.Schema.{Company, Admission}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -14,6 +14,7 @@ defmodule Rh.Benefit do
     field :description, :string
 
     belongs_to :company, Company
+    belongs_to :admission, Admission
 
     timestamps()
   end

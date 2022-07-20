@@ -2,7 +2,7 @@ defmodule Rh.Schema.Company do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.Schema.{Affiliate, Term, Benefit, Document, Occupation}
+  alias Rh.Schema.{Affiliate, Term, Benefit, Document, Occupation, Admission, Candidate}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -15,10 +15,14 @@ defmodule Rh.Schema.Company do
     field :corporate_name, :string
 
     has_many :affiliates, Affiliate
+    has_many :admissions, Admission
+
     has_many :terms, Term
     has_many :benefits, Benefit
     has_many :documents, Document
     has_many :occupations, Occupation
+
+    has_many :candidates, Candidate
 
     timestamps()
   end
