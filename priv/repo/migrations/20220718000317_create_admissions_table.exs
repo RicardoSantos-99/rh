@@ -15,6 +15,7 @@ defmodule Rh.Repo.Migrations.CreateAdmissionsTable do
       add :documents_id, references(:documents, type: :binary_id)
       add :affiliate_id, references(:affiliates, type: :binary_id)
       add :occupation_id, references(:occupations, type: :binary_id)
+      add :created_by_id, references(:employees, type: :binary_id)
 
       timestamps()
     end
