@@ -7,7 +7,7 @@ defmodule Rh.Repo.Migrations.CreateAdmissionsTable do
       add :start_date, :date
       add :end_date, :date
       add :name, :string
-      add :model, :model_type
+      add :contract_model, :contract_model_type
       add :contract_type, :contract_type
 
       add :terms_id, references(:terms, type: :binary_id)
