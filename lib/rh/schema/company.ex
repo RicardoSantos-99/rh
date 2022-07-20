@@ -1,8 +1,8 @@
-defmodule Rh.Company do
+defmodule Rh.Schema.Company do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.{Affiliate, Term, Benefit, Document, Occupation}
+  alias Rh.Schema.{Affiliate, Term, Benefit, Document, Occupation}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

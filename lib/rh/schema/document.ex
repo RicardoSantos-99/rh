@@ -1,21 +1,19 @@
-defmodule Rh.Affiliate do
+defmodule Rh.Schema.Document do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.{Company, Employee}
+  alias Rh.Schema.Company
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @required_params [:name, :cnpj, :company_id]
+  @required_params [:name, :description]
 
-  schema "affiliates" do
+  schema "documents" do
     field :name, :string
-    field :cnpj, :string
+    field :description, :string
 
     belongs_to :company, Company
-
-    has_many :employees, Employee
 
     timestamps()
   end
@@ -24,8 +22,6 @@ defmodule Rh.Affiliate do
     struct
     |> cast(params, @required_params)
     |> validate_required(@required_params)
-    |> validate_length(:cnpj, is: 14)
     |> unique_constraint([:name])
-    |> unique_constraint([:cnpj])
   end
 end

@@ -1,9 +1,9 @@
-defmodule Rh.Employee do
+defmodule Rh.Schema.Employee do
   use Ecto.Schema
   import Ecto.Changeset
 
   alias Ecto.{Enum, Changeset}
-  alias Rh.Affiliate
+  alias Rh.Schema.Affiliate
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
