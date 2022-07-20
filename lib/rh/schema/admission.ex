@@ -19,9 +19,6 @@ defmodule Rh.Schema.Admission do
     :contract_type,
     :model,
     :company_id,
-    :documents_id,
-    :benefits_id,
-    :terms_id,
     :occupations_id,
     :employee_id
   ]
@@ -36,17 +33,21 @@ defmodule Rh.Schema.Admission do
     belongs_to :affiliate, Affiliate
     belongs_to :company, Company
 
+    many_to_many :documents, Document, join_through: "documents_admissions"
+    many_to_many :benefits, Benefit, join_through: "benefits_admissions"
+    many_to_many :terms, Term, join_through: "terms_admissions"
+
     has_one :occupation, Occupation
-    has_many :documents, Document
-    has_many :benefits, Benefit
-    has_many :terms, Term
 
     has_many :candidates, Candidate
   end
 
-  def changeset(struct \\ %__MODULE__{}, params) do
+  def changeset(struct \\ %__MODULE__{}, params, documents, benefits, terms) do
     struct
     |> cast(params, @required_params)
     |> validate_required(@required_params)
+    |> put_assoc(:documents, documents)
+    |> put_assoc(:benefits, benefits)
+    |> put_assoc(:terms, terms)
   end
 end

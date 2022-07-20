@@ -18,6 +18,7 @@ defmodule Rh.Schema.Candidate do
     :name,
     :status,
     :rg,
+    :cpf,
     :date_of_birth,
     :phone,
     :cellphone,
@@ -34,6 +35,7 @@ defmodule Rh.Schema.Candidate do
     field :password_hash, :string
     field :name, :string
     field :rg, :string
+    field :cpf, :string
     field :date_of_birth, :date
     field :phone, :string
     field :cellphone, :string
@@ -53,6 +55,7 @@ defmodule Rh.Schema.Candidate do
     |> unique_constraint([:email])
     |> unique_constraint([:pis])
     |> unique_constraint([:rg])
+    |> unique_constraint([:cpf])
     |> Password.put_password_hash()
   end
 end

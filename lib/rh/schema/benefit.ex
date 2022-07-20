@@ -14,7 +14,7 @@ defmodule Rh.Schema.Benefit do
     field :description, :string
 
     belongs_to :company, Company
-    belongs_to :admission, Admission
+    many_to_many :admissions, Admission, join_through: "documents_admissions"
 
     timestamps()
   end
