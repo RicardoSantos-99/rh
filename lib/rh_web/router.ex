@@ -5,8 +5,15 @@ defmodule RhWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", RhWeb do
+  scope "/", RhWeb do
     pipe_through :api
+  end
+
+  scope "/api" do
+    pipe_through :api
+
+    forward "/graphql", Absinthe.Plug, schema: RhWeb.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: RhWeb.Schema
   end
 
   # Enables LiveDashboard only for development
