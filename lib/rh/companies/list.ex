@@ -3,8 +3,9 @@ defmodule Rh.Companies.List do
   alias Rh.Schema.Company
 
   def call() do
-    companies = Repo.all(Company)
-
-    {:ok, companies}
+    Repo.all(Company)
+    |> handle_response()
   end
+
+  defp handle_response(companies), do: {:ok, companies}
 end

@@ -3,8 +3,9 @@ defmodule Rh.Affiliates.List do
   alias Rh.Schema.Affiliate
 
   def call() do
-    affiliates = Repo.all(Affiliate)
-
-    {:ok, affiliates}
+    Repo.all(Affiliate)
+    |> handle_response()
   end
+
+  defp handle_response(affiliates), do: {:ok, affiliates}
 end

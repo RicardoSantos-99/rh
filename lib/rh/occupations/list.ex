@@ -3,8 +3,9 @@ defmodule Rh.Occupations.List do
   alias Rh.Schema.Occupation
 
   def call() do
-    occupations = Repo.all(Occupation)
-
-    {:ok, occupations}
+    Repo.all(Occupation)
+    |> handle_response()
   end
+
+  defp handle_response(occupations), do: {:ok, occupations}
 end
