@@ -3,7 +3,7 @@ defmodule Rh.Schema.Admission do
   import Ecto.Changeset
 
   alias Ecto.Enum
-  alias Rh.Schema.{Company, Affiliate, Term, Benefit, Document, Occupation, Candidate}
+  alias Rh.Schema.{Company, Affiliate, Term, Benefit, Document, Candidate}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -36,8 +36,6 @@ defmodule Rh.Schema.Admission do
     many_to_many :documents, Document, join_through: "documents_admissions"
     many_to_many :benefits, Benefit, join_through: "benefits_admissions"
     many_to_many :terms, Term, join_through: "terms_admissions"
-
-    has_one :occupation, Occupation
 
     has_many :candidates, Candidate
   end
