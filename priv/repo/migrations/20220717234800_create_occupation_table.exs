@@ -10,5 +10,8 @@ defmodule Rh.Repo.Migrations.CreateOccupationTable do
 
       timestamps()
     end
+
+    create unique_index(:occupations, [:name])
+    create unique_index(:occupations, [:code])
   end
 end
