@@ -11,13 +11,19 @@ defmodule RhWeb.Schema do
   import_types RhWeb.Mutations.Occupation
   import_types RhWeb.Queries.Occupation
 
+  import_types RhWeb.Schema.Types.Affiliate
+  import_types RhWeb.Mutations.Affiliate
+  import_types RhWeb.Queries.Affiliate
+
   query do
     import_fields :company_queries
     import_fields :occupation_queries
+    import_fields :affiliate_queries
   end
 
   mutation do
     import_fields :company_mutation
     import_fields :occupation_mutation
+    import_fields :affiliate_mutation
   end
 end
