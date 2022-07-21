@@ -4,7 +4,7 @@ defmodule Rh.Companies.Delete do
 
   def call(id) do
     case Repo.get(Company, id) do
-      nil -> {:error, Error.build_resource_not_found_error()}
+      nil -> {:error, Error.build_resource_not_found_error("Company")}
       company -> Repo.delete(company)
     end
   end
