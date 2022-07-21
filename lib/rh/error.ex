@@ -12,5 +12,6 @@ defmodule Rh.Error do
     }
   end
 
-  def build_resource_not_found_error, do: build(:not_found, "Resource not found")
+  def build_resource_not_found_error(resource_name),
+    do: build(:not_found, "#{resource_name} not found")
 end
