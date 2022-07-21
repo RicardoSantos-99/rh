@@ -16,6 +16,7 @@ defmodule Rh do
 
   defdelegate create_company(params), to: CreateCompany, as: :call
   defdelegate get_company(id), to: GetCompany, as: :by_id
+  defdelegate get_company_by_cnpj(cnpj), to: GetCompany, as: :by_cnpj
   defdelegate delete_company(id), to: DeleteCompany, as: :call
   defdelegate list_companies, to: ListCompanies, as: :call
 
