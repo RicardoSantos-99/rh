@@ -34,5 +34,6 @@ defmodule Rh.Schema.Company do
     |> validate_length(:cnpj, is: 14)
     |> unique_constraint([:cnpj])
     |> unique_constraint([:corporate_name])
+    |> cast_assoc(:affiliates)
   end
 end
