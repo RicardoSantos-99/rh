@@ -1,8 +1,8 @@
-defmodule Rh.Repo.Migrations.CreateCenterCostTable do
+defmodule Rh.Repo.Migrations.CreateCostCenterTable do
   use Ecto.Migration
 
   def change do
-    create table(:center_costs) do
+    create table(:cost_centers) do
       add :name, :string
       add :description, :string
       add :code, :string
@@ -11,8 +11,5 @@ defmodule Rh.Repo.Migrations.CreateCenterCostTable do
 
       timestamps()
     end
-
-    create unique_index(:center_costs, [:code])
-    create unique_index(:center_costs, [:name])
   end
 end

@@ -3,7 +3,7 @@ defmodule Rh.Repo.Migrations.AddCenterCostIdInDepartmentsTable do
 
   def change do
     alter table(:departments) do
-      add :center_cost_id, references(:center_costs, type: :binary_id)
+      add :cost_center_id, references(:cost_centers, type: :binary_id)
     end
   end
 end
