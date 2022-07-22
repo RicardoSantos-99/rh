@@ -10,15 +10,15 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Rh.Schema.{Company, Affiliate, Employee, Occupation}
+alias Rh.Schema.{Company, Affiliate, Employee, Occupation, CostCenter, Department}
 
-company = %{cnpj: "12312312312312", corporate_name: "RH", name: "ninha camundangas"}
+company = %{cnpj: "12312312312312", corporate_name: "RH", name: "ninho de camundangas"}
 
 {:ok, %Company{id: company_id}} = Rh.create_company(company)
 
 develop = %{
-  name: "Desenvolvedor",
-  description: "Desenvolvedor de software",
+  name: "dev",
+  description: "dev de software",
   code: 1,
   company_id: company_id
 }
@@ -37,6 +37,24 @@ affiliated = %{
 }
 
 {:ok, %Affiliate{id: affiliate_id}} = Rh.create_affiliate(affiliated)
+
+cost_center = %{
+  name: "Engenharia",
+  description: "Engenharia de software",
+  code: "2",
+  affiliate_id: affiliate_id
+}
+
+{:ok, %CostCenter{id: cost_center_id}} = Rh.create_cost_center(cost_center)
+
+department = %{
+  name: "Desenvolvimento",
+  description: "Desenvolvimento de software",
+  code: "1",
+  cost_center_id: cost_center_id
+}
+
+{:ok, %Department{id: department_id}} = Rh.create_department(department)
 
 # %{
 #   name: "Carlos Tinas",
