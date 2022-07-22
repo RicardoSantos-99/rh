@@ -2,7 +2,7 @@ defmodule Rh.Schema.Affiliate do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.Schema.{Company, Employee, Admission}
+  alias Rh.Schema.{Company, Employee, Admission, CostCenter}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -15,6 +15,7 @@ defmodule Rh.Schema.Affiliate do
 
     belongs_to :company, Company
 
+    has_many :center_costs, CostCenter
     has_many :employees, Employee
     has_many :admissions, Admission
 
