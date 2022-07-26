@@ -10,6 +10,7 @@ defmodule Rh.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      # Test
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -55,7 +56,8 @@ defmodule Rh.MixProject do
       {:pbkdf2_elixir, "~> 2.0"},
       {:absinthe, "~> 1.5"},
       {:absinthe_plug, "~> 1.5"},
-      {:crudry, "~> 2.4.0"}
+      {:crudry, "~> 2.4.0"},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
 
