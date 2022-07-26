@@ -4,9 +4,7 @@ defmodule Rh.Affiliates.Create do
 
   alias Ecto.UUID
 
-  def call(%{name: name, cnpj: cnpj, company_id: company_id}) do
-    params = %{name: name, cnpj: cnpj, company_id: company_id}
-
+  def call(%{company_id: company_id} = params) do
     company_id
     |> UUID.cast()
     |> handle_response(params)
