@@ -1,5 +1,5 @@
 
-# Rh
+# Rh - [![codecov](https://codecov.io/gh/RicardoSantos-99/rh/branch/master/graph/badge.svg?token=9ZNJ101IJE)](https://codecov.io/gh/RicardoSantos-99/rh)
 
 To start your Phoenix server:
 
