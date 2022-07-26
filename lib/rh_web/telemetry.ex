@@ -1,4 +1,8 @@
 defmodule RhWeb.Telemetry do
+  @moduledoc """
+  This module defines the telemetry.
+  """
+
   use Supervisor
   import Telemetry.Metrics
 

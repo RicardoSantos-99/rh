@@ -1,9 +1,13 @@
 defmodule Rh.Schema.Admission do
+  @moduledoc """
+  Admission schema
+    params [salary, salary, start_date, end_date, contract_type, model, company_id, occupations_id, employee_id]
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
   alias Ecto.Enum
-  alias Rh.Schema.{Company, Affiliate, Term, Benefit, Document, Candidate}
+  alias Rh.Schema.{Affiliate, Benefit, Candidate, Company, Document, Term}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

@@ -1,4 +1,8 @@
 defmodule Rh.Departments.Get do
+  @moduledoc """
+  Get a department.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.Department
 

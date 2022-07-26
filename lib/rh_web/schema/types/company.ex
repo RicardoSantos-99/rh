@@ -1,4 +1,8 @@
 defmodule RhWeb.Schema.Types.Company do
+  @moduledoc """
+  This module defines the company types.
+  """
+
   use Absinthe.Schema.Notation
 
   object :company do

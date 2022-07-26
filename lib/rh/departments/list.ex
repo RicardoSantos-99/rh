@@ -1,8 +1,11 @@
 defmodule Rh.Departments.List do
+  @moduledoc """
+  List departments.
+  """
   alias Rh.Repo
   alias Rh.Schema.Department
 
-  def call() do
+  def call do
     Repo.all(Department)
     |> handle_response()
   end

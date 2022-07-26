@@ -1,4 +1,8 @@
 defmodule Rh.Affiliates.Create do
+  @moduledoc """
+  Create an affiliate.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.{Affiliate, Company}
 

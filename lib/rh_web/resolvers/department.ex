@@ -1,4 +1,7 @@
 defmodule RhWeb.Resolvers.Department do
+  @moduledoc """
+  This module defines the department resolver.
+  """
   def get(%{id: department_id}, _context), do: Rh.get_department(department_id)
   def create(%{input: params}, _context), do: Rh.create_department(params)
   def delete(%{id: department_id}, _context), do: Rh.delete_department(department_id)

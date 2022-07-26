@@ -1,4 +1,8 @@
 defmodule Rh.Companies.Create do
+  @moduledoc """
+  Create a company.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.Company
 

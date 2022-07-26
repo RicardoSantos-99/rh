@@ -1,4 +1,8 @@
 defmodule RhWeb.Schema do
+  @moduledoc """
+  schema for the RhWeb API.
+  """
+
   use Absinthe.Schema
 
   import_types RhWeb.Schema.Types.Custom.UUID4

@@ -1,4 +1,7 @@
 defmodule RhWeb.Queries.Affiliate do
+  @moduledoc """
+  affiliate queries.
+  """
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.Affiliate, as: AffiliateResolver

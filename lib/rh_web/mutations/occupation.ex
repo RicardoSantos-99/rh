@@ -1,4 +1,7 @@
 defmodule RhWeb.Mutations.Occupation do
+  @moduledoc """
+  occupation mutations.
+  """
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.Occupation, as: OccupationResolver

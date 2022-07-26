@@ -1,4 +1,8 @@
 defmodule Rh.Departments.Delete do
+  @moduledoc """
+  Delete a department.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.Department
 

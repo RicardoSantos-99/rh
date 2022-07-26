@@ -1,4 +1,7 @@
 defmodule Rh.Schema.CostCenter do
+  @moduledoc """
+  A cost center schema.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

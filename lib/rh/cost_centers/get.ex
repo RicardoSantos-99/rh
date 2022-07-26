@@ -1,4 +1,8 @@
 defmodule Rh.CostCenters.Get do
+  @moduledoc """
+  Get a cost center.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.CostCenter
 

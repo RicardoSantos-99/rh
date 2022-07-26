@@ -1,4 +1,7 @@
 defmodule Rh.Error do
+  @moduledoc """
+  Handle errors.
+  """
   @keys [:status, :result]
 
   @enforce_keys @keys

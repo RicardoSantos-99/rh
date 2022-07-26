@@ -1,4 +1,8 @@
 defmodule Rh.Occupations.Get do
+  @moduledoc """
+  Get an occupation.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.Occupation
 

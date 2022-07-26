@@ -1,4 +1,8 @@
 defmodule RhWeb.Mutations.CostCenter do
+  @moduledoc """
+  cost center mutations.
+  """
+
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.CostCenter, as: CostCenterResolver

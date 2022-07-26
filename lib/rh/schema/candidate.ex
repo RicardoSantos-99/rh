@@ -1,9 +1,13 @@
 defmodule Rh.Schema.Candidate do
+  @moduledoc """
+  Candidate schema.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
   alias Ecto.Enum
-  alias Rh.Schema.{Company, Admission}
+  alias Rh.Schema.{Admission, Company}
   alias Rh.Utils.Password
 
   @primary_key {:id, :binary_id, autogenerate: true}

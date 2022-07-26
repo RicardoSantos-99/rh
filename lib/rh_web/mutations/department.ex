@@ -1,4 +1,7 @@
 defmodule RhWeb.Mutations.Department do
+  @moduledoc """
+  department mutations.
+  """
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.Department, as: DepartmentResolver

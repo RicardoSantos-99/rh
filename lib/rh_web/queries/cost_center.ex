@@ -1,4 +1,7 @@
 defmodule RhWeb.Queries.CostCenter do
+  @moduledoc """
+  cost center queries.
+  """
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.CostCenter, as: CostCenterResolver

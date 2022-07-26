@@ -1,4 +1,7 @@
 defmodule Rh.Schema.Employee do
+  @moduledoc """
+  Employee schema.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

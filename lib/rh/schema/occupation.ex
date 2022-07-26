@@ -1,8 +1,11 @@
 defmodule Rh.Schema.Occupation do
+  @moduledoc """
+  Occupation schema.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.Schema.{Company}
+  alias Rh.Schema.Company
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

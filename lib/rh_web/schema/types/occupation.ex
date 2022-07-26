@@ -1,4 +1,7 @@
 defmodule RhWeb.Schema.Types.Occupation do
+  @moduledoc """
+  This module defines the occupation types.
+  """
   use Absinthe.Schema.Notation
 
   object :occupation do

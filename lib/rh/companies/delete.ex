@@ -1,4 +1,8 @@
 defmodule Rh.Companies.Delete do
+  @moduledoc """
+  Delete a company.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.Company
 

@@ -1,4 +1,7 @@
 defmodule Rh.Companies.Get do
+  @moduledoc """
+  Get a company.
+  """
   alias Rh.Repo
   alias Rh.Schema.Company
 

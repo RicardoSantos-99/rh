@@ -1,4 +1,7 @@
 defmodule RhWeb.Queries.Occupation do
+  @moduledoc """
+  occupation queries.
+  """
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.Occupation, as: OccupationResolver

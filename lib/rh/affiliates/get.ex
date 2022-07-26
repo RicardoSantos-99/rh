@@ -1,4 +1,7 @@
 defmodule Rh.Affiliates.Get do
+  @moduledoc """
+  Get an affiliate.
+  """
   alias Rh.Repo
   alias Rh.Schema.Affiliate
 

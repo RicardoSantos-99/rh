@@ -1,8 +1,13 @@
 defmodule Rh.Schema.Affiliate do
+  @moduledoc """
+  Affiliate schema.
+  params = []
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.Schema.{Company, Employee, Admission, CostCenter}
+  alias Rh.Schema.{Admission, Company, CostCenter, Employee}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

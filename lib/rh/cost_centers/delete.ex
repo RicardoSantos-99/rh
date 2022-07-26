@@ -1,4 +1,8 @@
 defmodule Rh.CostCenters.Delete do
+  @moduledoc """
+  Delete a cost center.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.CostCenter
 

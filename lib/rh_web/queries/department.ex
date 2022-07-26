@@ -1,4 +1,7 @@
 defmodule RhWeb.Queries.Department do
+  @moduledoc """
+  department queries.
+  """
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.Department, as: DepartmentResolver

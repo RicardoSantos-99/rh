@@ -1,4 +1,7 @@
 defmodule RhWeb.Queries.Company do
+  @moduledoc """
+  company queries.
+  """
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.Company, as: CompanyResolver

@@ -1,4 +1,7 @@
 defmodule RhWeb.Schema.Types.Department do
+  @moduledoc """
+  This module defines the department types.
+  """
   use Absinthe.Schema.Notation
 
   object :department do

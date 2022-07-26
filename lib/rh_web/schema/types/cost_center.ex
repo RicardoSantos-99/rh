@@ -1,4 +1,8 @@
 defmodule RhWeb.Schema.Types.CostCenter do
+  @moduledoc """
+  This module defines the cost center types.
+  """
+
   use Absinthe.Schema.Notation
 
   object :cost_center do

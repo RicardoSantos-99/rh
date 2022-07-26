@@ -1,8 +1,11 @@
 defmodule Rh.Schema.Document do
+  @moduledoc """
+  A document schema.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rh.Schema.{Company, Admission}
+  alias Rh.Schema.{Admission, Company}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

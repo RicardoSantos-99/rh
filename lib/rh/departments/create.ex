@@ -1,4 +1,7 @@
 defmodule Rh.Departments.Create do
+  @moduledoc """
+  Create a department.
+  """
   alias Rh.Repo
   alias Rh.Schema.{CostCenter, Department}
 

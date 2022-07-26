@@ -1,4 +1,7 @@
 defmodule RhWeb.Mutations.Affiliate do
+  @moduledoc """
+  affiliate mutations.
+  """
   use Absinthe.Schema.Notation
 
   alias RhWeb.Resolvers.Affiliate, as: AffiliateResolver

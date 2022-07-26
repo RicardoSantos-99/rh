@@ -1,4 +1,7 @@
 defmodule RhWeb.Resolvers.CostCenter do
+  @moduledoc """
+  This module defines the cost center resolver.
+  """
   def get(%{id: cost_center_id}, _context), do: Rh.get_cost_center(cost_center_id)
   def create(%{input: params}, _context), do: Rh.create_cost_center(params)
   def delete(%{id: cost_center_id}, _context), do: Rh.delete_cost_center(cost_center_id)

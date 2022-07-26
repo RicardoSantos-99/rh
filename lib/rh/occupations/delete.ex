@@ -1,4 +1,8 @@
 defmodule Rh.Occupations.Delete do
+  @moduledoc """
+  Delete an occupation.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.Occupation
 

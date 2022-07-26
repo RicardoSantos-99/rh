@@ -1,4 +1,8 @@
 defmodule RhWeb.Schema.Types.Affiliate do
+  @moduledoc """
+  This module defines the affiliate types.
+  """
+
   use Absinthe.Schema.Notation
 
   object :affiliate do

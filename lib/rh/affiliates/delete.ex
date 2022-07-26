@@ -1,4 +1,7 @@
 defmodule Rh.Affiliates.Delete do
+  @moduledoc """
+  Delete an affiliate.
+  """
   alias Rh.Repo
   alias Rh.Schema.Affiliate
 

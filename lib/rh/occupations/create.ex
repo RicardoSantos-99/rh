@@ -1,4 +1,8 @@
 defmodule Rh.Occupations.Create do
+  @moduledoc """
+  Create an occupation.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.{Company, Occupation}
 

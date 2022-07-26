@@ -1,8 +1,11 @@
 defmodule Rh.Companies.List do
-  alias Rh.{Repo}
+  @moduledoc """
+  List companies.
+  """
+  alias Rh.Repo
   alias Rh.Schema.Company
 
-  def call() do
+  def call do
     Repo.all(Company)
     |> handle_response()
   end

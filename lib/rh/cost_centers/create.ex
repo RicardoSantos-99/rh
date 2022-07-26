@@ -1,4 +1,8 @@
 defmodule Rh.CostCenters.Create do
+  @moduledoc """
+  Create a cost center.
+  """
+
   alias Rh.Repo
   alias Rh.Schema.{Affiliate, CostCenter}
 
