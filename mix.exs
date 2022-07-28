@@ -57,7 +57,8 @@ defmodule Rh.MixProject do
       {:absinthe, "~> 1.5"},
       {:absinthe_plug, "~> 1.5"},
       {:crudry, "~> 2.4.0"},
-      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false},
+      {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
 
