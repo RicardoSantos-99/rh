@@ -1,4 +1,6 @@
 defmodule Delivery.Factory do
+  @moduledoc false
+
   use ExMachina.Ecto, repo: Delivery.Repo
 
   alias Rh.Schema.Company
