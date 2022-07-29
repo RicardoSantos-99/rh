@@ -1,5 +1,8 @@
 defmodule RhWeb.Mutations.CompanyTest do
+  @moduledoc false
   use RhWeb.ConnCase, async: true
+
+  import Rh.Factory
 
   alias Rh.Schema.Company
 
@@ -135,7 +138,7 @@ defmodule RhWeb.Mutations.CompanyTest do
 
   describe "delete_company/2" do
     test "when id is valid, return ok", %{conn: conn} do
-      company = %{cnpj: "12312312312312", corporate_name: "RH", name: "ninho de camundangas"}
+      company = build(:company)
       {:ok, %Company{id: company_id}} = Rh.create_company(company)
 
       response =
@@ -190,6 +193,30 @@ defmodule RhWeb.Mutations.CompanyTest do
             "locations" => [%{"column" => 5, "line" => 2}],
             "message" => "Company not found",
             "path" => ["deleteCompany"]
+          }
+        ]
+      }
+
+      assert expected_response == response
+    end
+
+    test "when there are invalid params, return an error", %{conn: conn} do
+      response =
+        conn
+        |> post("/api/graphql", %{
+          "query" => @delete_company
+        })
+        |> json_response(:ok)
+
+      expected_response = %{
+        "errors" => [
+          %{
+            "locations" => [%{"column" => 19, "line" => 2}],
+            "message" => "In argument \"id\": Expected type \"UUID4!\", found null."
+          },
+          %{
+            "locations" => [%{"column" => 26, "line" => 1}],
+            "message" => "Variable \"id\": Expected non-null, found null."
           }
         ]
       }
