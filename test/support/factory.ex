@@ -31,4 +31,22 @@ defmodule Rh.Factory do
       company_id: Ecto.UUID.generate()
     }
   end
+
+  def cost_center_factory do
+    %{
+      name: "Engenharia",
+      description: "Engenharia de software",
+      code: "2",
+      affiliate_id: Ecto.UUID.generate()
+    }
+  end
+
+  def department_factory do
+    %{
+      name: "Desenvolvimento",
+      description: "Desenvolvimento de software",
+      code: "1",
+      cost_center_id: Ecto.UUID.generate()
+    }
+  end
 end
