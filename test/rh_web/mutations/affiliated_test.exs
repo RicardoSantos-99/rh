@@ -21,7 +21,7 @@ defmodule RhWeb.Mutations.AffiliatedTest do
     }
   """
 
-  describe "create_company/2" do
+  describe "create affiliate mutations" do
     setup %{conn: conn} do
       company_params = build(:company)
 
@@ -214,7 +214,7 @@ defmodule RhWeb.Mutations.AffiliatedTest do
     end
   end
 
-  describe "delete_company/2" do
+  describe "delete affiliate mutations" do
     setup %{conn: conn} do
       company_params = build(:company)
 
@@ -264,7 +264,7 @@ defmodule RhWeb.Mutations.AffiliatedTest do
       assert expected_response == response
     end
 
-    test "when company not found, returns an error", %{conn: conn} do
+    test "when affiliated not found, returns an error", %{conn: conn} do
       response =
         conn
         |> post("/api/graphql", %{

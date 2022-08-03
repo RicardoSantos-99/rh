@@ -18,14 +18,14 @@ defmodule RhWeb.Mutations.CompanyTest do
   """
 
   @delete_company """
-    mutation createCompany($id: UUID4!) {
+    mutation deleteCompany($id: UUID4!) {
       deleteCompany(id: $id) {
         id
       }
     }
   """
 
-  describe "create_company/2" do
+  describe "create company mutations" do
     test "when all params are valid, create a new company", %{conn: conn} do
       response =
         conn
@@ -136,7 +136,7 @@ defmodule RhWeb.Mutations.CompanyTest do
     end
   end
 
-  describe "delete_company/2" do
+  describe "delete company mutations" do
     test "when id is valid, return ok", %{conn: conn} do
       company = build(:company)
       {:ok, %Company{id: company_id}} = Rh.create_company(company)
