@@ -22,4 +22,13 @@ defmodule Rh.Factory do
       company_id: Ecto.UUID.generate()
     }
   end
+
+  def occupation_factory do
+    %{
+      name: "QA",
+      description: "Qualidade de software",
+      code: 2,
+      company_id: Ecto.UUID.generate()
+    }
+  end
 end
