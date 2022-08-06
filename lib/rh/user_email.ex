@@ -1,4 +1,7 @@
 defmodule Rh.UserEmail do
+  @moduledoc """
+  This module is used to manage user emails.
+  """
   import Swoosh.Email
 
   def send_email(%{name: name, email: email}) do
