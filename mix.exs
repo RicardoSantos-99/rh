@@ -46,6 +46,7 @@ defmodule Rh.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_dashboard, "~> 0.6"},
       {:swoosh, "~> 1.3"},
+      {:phoenix_swoosh, "~> 1.0"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
@@ -58,7 +59,8 @@ defmodule Rh.MixProject do
       {:absinthe_plug, "~> 1.5"},
       {:crudry, "~> 2.4.0"},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
-      {:ex_machina, "~> 2.7.0", only: :test}
+      {:ex_machina, "~> 2.7.0", only: :test},
+      {:bamboo, "~> 1.1"}
     ]
   end
 
