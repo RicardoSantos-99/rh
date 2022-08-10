@@ -1,12 +1,12 @@
-defmodule RhWeb.Queries.DepartmentTest do
+defmodule RhWeb.Queries.CostCenterTest do
   @moduledoc false
   use RhWeb.ConnCase, async: true
 
   import Rh.Factory
 
-  @get_department_by_id """
-    query getDepartment($id: UUID4!) {
-      getDepartment(id: $id) {
+  @get_cost_center_by_id """
+    query getCostCenter($id: UUID4!) {
+      getCostCenter(id: $id) {
         id
         code
         name
@@ -14,9 +14,9 @@ defmodule RhWeb.Queries.DepartmentTest do
     }
   """
 
-  @get_departments """
-    query listDepartments {
-      listDepartments {
+  @get_cost_centers """
+    query listCostCenters {
+      listCostCenters {
         code
         name
         description
@@ -35,27 +35,24 @@ defmodule RhWeb.Queries.DepartmentTest do
       cost_center_params = build(:cost_center, %{affiliate_id: affiliated_id})
       {:ok, %{id: cost_center_id}} = Rh.create_cost_center(cost_center_params)
 
-      department_params = build(:department, %{cost_center_id: cost_center_id})
-      {:ok, %{id: department_id}} = Rh.create_department(department_params)
-
-      {:ok, conn: conn, department_id: department_id}
+      {:ok, conn: conn, cost_center_id: cost_center_id}
     end
 
-    test "find departments by id, return a department", %{conn: conn, department_id: id} do
+    test "find departments by id, return a department", %{conn: conn, cost_center_id: id} do
       response =
         conn
         |> post("/api/graphql", %{
-          "query" => @get_department_by_id,
+          "query" => @get_cost_center_by_id,
           "variables" => %{id: id}
         })
         |> json_response(:ok)
 
       expected_response = %{
         "data" => %{
-          "getDepartment" => %{
-            "code" => "1",
+          "getCostCenter" => %{
+            "code" => "2",
             "id" => id,
-            "name" => "Desenvolvimento"
+            "name" => "Engenharia"
           }
         }
       }
@@ -67,17 +64,17 @@ defmodule RhWeb.Queries.DepartmentTest do
       response =
         conn
         |> post("/api/graphql", %{
-          "query" => @get_departments
+          "query" => @get_cost_centers
         })
         |> json_response(:ok)
 
       expected_response = %{
         "data" => %{
-          "listDepartments" => [
+          "listCostCenters" => [
             %{
-              "code" => "1",
-              "description" => "Desenvolvimento de software",
-              "name" => "Desenvolvimento"
+              "code" => "2",
+              "description" => "Engenharia de software",
+              "name" => "Engenharia"
             }
           ]
         }

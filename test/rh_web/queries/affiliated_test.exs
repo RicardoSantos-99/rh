@@ -36,7 +36,10 @@ defmodule RhWeb.Queries.AffiliatedTest do
       {:ok, conn: conn, affiliate: affiliate}
     end
 
-    test "find affiliate by id, return affiliate", %{conn: conn, affiliate: %{id: id, cnpj: cnpj}} do
+    test "find affiliate by id, return an affiliate", %{
+      conn: conn,
+      affiliate: %{id: id, cnpj: cnpj}
+    } do
       response =
         conn
         |> post("/api/graphql", %{
