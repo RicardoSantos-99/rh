@@ -1,16 +1,20 @@
 defmodule RhWeb.Router do
   use RhWeb, :router
 
+  alias RhWeb.Plugs.UUIDChecker
+
   pipeline :api do
     plug :accepts, ["json"]
+    plug UUIDChecker
   end
 
-  scope "/", RhWeb do
-    pipe_through :api
+  pipeline :auth do
+    # plug RhWeb.Auth.Pipeline
+    plug RhWeb.Context
   end
 
   scope "/api" do
-    pipe_through :api
+    pipe_through [:api, :auth]
 
     forward "/graphql", Absinthe.Plug, schema: RhWeb.Schema
     forward "/graphiql", Absinthe.Plug.GraphiQL, schema: RhWeb.Schema

@@ -2,11 +2,14 @@ defmodule Rh.Affiliates.List do
   @moduledoc """
   List affiliates.
   """
+  import Ecto.Query, only: [where: 2]
   alias Rh.Repo
-  alias Rh.Schema.Affiliate
+  alias Rh.Schema.{Affiliate, Employee}
 
-  def call do
-    Repo.all(Affiliate)
+  def call(%Employee{company_id: company_id}) do
+    Affiliate
+    |> where(company_id: ^company_id)
+    |> Repo.all()
     |> handle_response()
   end
 
