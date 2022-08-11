@@ -17,7 +17,7 @@ defmodule Rh.Affiliates.Get do
 
   defp handle_response({:ok, id}) do
     case Repo.get(Affiliate, id) do
-      nil -> {:error, "User not found"}
+      nil -> {:error, "Affiliate not found"}
       affiliates -> {:ok, affiliates}
     end
   end
