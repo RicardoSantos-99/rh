@@ -3,56 +3,38 @@ defmodule Rh do
   Rh is a API for working admissions.
   """
 
-  alias Rh.Affiliates.Create, as: CreateAffiliate
-  alias Rh.Affiliates.Delete, as: DeleteAffiliate
-  alias Rh.Affiliates.Get, as: GetAffiliate
-  alias Rh.Affiliates.List, as: ListAffiliates
+  alias Rh.{Affiliates, Companies, Departments, Employees, CostCenters, Occupations}
 
-  alias Rh.Companies.Create, as: CreateCompany
-  alias Rh.Companies.Delete, as: DeleteCompany
-  alias Rh.Companies.Get, as: GetCompany
-  alias Rh.Companies.List, as: ListCompanies
+  defdelegate create_company(params), to: Companies.Create, as: :call
+  defdelegate get_company(id), to: Companies.Get, as: :by_id
+  defdelegate get_company_by_cnpj(cnpj), to: Companies.Get, as: :by_cnpj
+  defdelegate delete_company(id), to: Companies.Delete, as: :call
+  defdelegate list_companies, to: Companies.List, as: :call
 
-  alias Rh.CostCenters.Create, as: CreateCostCenters
-  alias Rh.CostCenters.Delete, as: DeleteCostCenters
-  alias Rh.CostCenters.Get, as: GetCostCenters
-  alias Rh.CostCenters.List, as: ListCostCenters
+  defdelegate create_occupation(params), to: Occupations.Create, as: :call
+  defdelegate get_occupation(id), to: Occupations.Get, as: :by_id
+  defdelegate delete_occupation(id), to: Occupations.Delete, as: :call
+  defdelegate list_occupations, to: Occupations.List, as: :call
 
-  alias Rh.Departments.Create, as: CreateDepartments
-  alias Rh.Departments.Delete, as: DeleteDepartment
-  alias Rh.Departments.Get, as: GetDepartment
-  alias Rh.Departments.List, as: ListDepartments
+  defdelegate create_affiliate(params), to: Affiliates.Create, as: :call
+  defdelegate get_affiliate(id), to: Affiliates.Get, as: :by_id
+  defdelegate delete_affiliate(id), to: Affiliates.Delete, as: :call
+  defdelegate list_affiliates(params), to: Affiliates.List, as: :call
 
-  alias Rh.Occupations.Create, as: CreateOccupation
-  alias Rh.Occupations.Delete, as: DeleteOccupation
-  alias Rh.Occupations.Get, as: GetOccupation
-  alias Rh.Occupations.List, as: ListOccupations
+  defdelegate create_cost_center(params), to: CostCenters.Create, as: :call
+  defdelegate get_cost_center(id), to: CostCenters.Get, as: :by_id
+  defdelegate get_cost_center_by_code(id), to: CostCenters.Get, as: :get_by_code
+  defdelegate delete_cost_center(id), to: CostCenters.Delete, as: :call
+  defdelegate list_cost_centers, to: CostCenters.List, as: :call
 
-  defdelegate create_company(params), to: CreateCompany, as: :call
-  defdelegate get_company(id), to: GetCompany, as: :by_id
-  defdelegate get_company_by_cnpj(cnpj), to: GetCompany, as: :by_cnpj
-  defdelegate delete_company(id), to: DeleteCompany, as: :call
-  defdelegate list_companies, to: ListCompanies, as: :call
+  defdelegate create_department(params), to: Departments.Create, as: :call
+  defdelegate get_department(id), to: Departments.Get, as: :by_id
+  defdelegate get_department_by_code(code), to: Departments.Get, as: :get_by_code
+  defdelegate delete_department(id), to: Departments.Delete, as: :call
+  defdelegate list_departments, to: Departments.List, as: :call
 
-  defdelegate create_occupation(params), to: CreateOccupation, as: :call
-  defdelegate get_occupation(id), to: GetOccupation, as: :by_id
-  defdelegate delete_occupation(id), to: DeleteOccupation, as: :call
-  defdelegate list_occupations, to: ListOccupations, as: :call
-
-  defdelegate create_affiliate(params), to: CreateAffiliate, as: :call
-  defdelegate get_affiliate(id), to: GetAffiliate, as: :by_id
-  defdelegate delete_affiliate(id), to: DeleteAffiliate, as: :call
-  defdelegate list_affiliates, to: ListAffiliates, as: :call
-
-  defdelegate create_cost_center(params), to: CreateCostCenters, as: :call
-  defdelegate get_cost_center(id), to: GetCostCenters, as: :by_id
-  defdelegate get_cost_center_by_code(id), to: GetCostCenters, as: :get_by_code
-  defdelegate delete_cost_center(id), to: DeleteCostCenters, as: :call
-  defdelegate list_cost_centers, to: ListCostCenters, as: :call
-
-  defdelegate create_department(params), to: CreateDepartments, as: :call
-  defdelegate get_department(id), to: GetDepartment, as: :by_id
-  defdelegate get_department_by_code(code), to: GetDepartment, as: :get_by_code
-  defdelegate delete_department(id), to: DeleteDepartment, as: :call
-  defdelegate list_departments, to: ListDepartments, as: :call
+  defdelegate create_employee(params), to: Employees.Create, as: :call
+  defdelegate get_employee(id), to: Employees.Get, as: :by_id
+  defdelegate delete_employee(id), to: Employees.Delete, as: :call
+  defdelegate list_employees, to: Employees.List, as: :call
 end
