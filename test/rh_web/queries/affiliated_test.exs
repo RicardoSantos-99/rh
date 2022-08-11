@@ -59,6 +59,7 @@ defmodule RhWeb.Queries.AffiliatedTest do
              }
     end
 
+    @tag :skip
     test "find all affiliate, should return a list of affiliates", %{
       conn: conn,
       affiliate: %{cnpj: cnpj}
