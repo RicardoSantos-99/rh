@@ -60,7 +60,8 @@ defmodule Rh.MixProject do
       {:crudry, "~> 2.4.0"},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:ex_machina, "~> 2.7.0", only: :test},
-      {:bamboo, "~> 1.1"}
+      {:bamboo, "~> 1.1"},
+      {:guardian, "~> 2.0"}
     ]
   end
 
