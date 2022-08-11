@@ -3,7 +3,7 @@ defmodule Rh do
   Rh is a API for working admissions.
   """
 
-  alias Rh.{Affiliates, Companies, Departments, Employees, CostCenters, Occupations}
+  alias Rh.{Affiliates, Companies, CostCenters, Departments, Employees, Occupations}
 
   defdelegate create_company(params), to: Companies.Create, as: :call
   defdelegate get_company(id), to: Companies.Get, as: :by_id
