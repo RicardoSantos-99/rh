@@ -62,5 +62,6 @@ department = %{
   password: "12345678",
   cpf: "16655512312",
   employee: :ADMIN,
-  affiliate_id: "affiliate_id"
+  affiliate_id: "90b31bc7-0706-4faf-adb9-568f08595202",
+  company_id: "a2590e5b-5ac0-47a5-ba01-d63582538f90"
 }
