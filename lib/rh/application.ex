@@ -12,6 +12,8 @@ defmodule Rh.Application do
       Rh.Repo,
       # Start the Telemetry supervisor
       RhWeb.Telemetry,
+      # Start the history Telemetry supervisor
+      {RhWeb.MetricsStorage, RhWeb.Telemetry.metrics()},
       # Start the PubSub system
       {Phoenix.PubSub, name: Rh.PubSub},
       # Start the Endpoint (http/https)
@@ -22,7 +24,7 @@ defmodule Rh.Application do
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Rh.Supervisor]
+    opts = [strategy: :man, name: Rh.Supervisor]
     Supervisor.start_link(children, opts)
   end
 

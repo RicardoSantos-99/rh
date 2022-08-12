@@ -27,7 +27,7 @@ defmodule Rh.MixProject do
   def application do
     [
       mod: {Rh.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -61,7 +61,9 @@ defmodule Rh.MixProject do
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:ex_machina, "~> 2.7.0", only: :test},
       {:bamboo, "~> 1.1"},
-      {:guardian, "~> 2.0"}
+      {:guardian, "~> 2.0"},
+      {:ecto_psql_extras, "~> 0.6"},
+      {:circular_buffer, "~> 0.4.0"}
     ]
   end
 

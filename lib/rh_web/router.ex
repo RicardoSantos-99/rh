@@ -33,7 +33,9 @@ defmodule RhWeb.Router do
     scope "/" do
       pipe_through [:fetch_session, :protect_from_forgery]
 
-      live_dashboard "/dashboard", metrics: RhWeb.Telemetry
+      live_dashboard "/dashboard",
+        metrics: RhWeb.Telemetry,
+        metrics_history: {RhWeb.MetricsStorage, :metrics_history, []}
     end
   end
 
