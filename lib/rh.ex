@@ -16,9 +16,9 @@ defmodule Rh do
   defdelegate delete_occupation(id), to: Occupations.Delete, as: :call
   defdelegate list_occupations, to: Occupations.List, as: :call
 
-  defdelegate create_affiliate(params), to: Affiliates.Create, as: :call
-  defdelegate get_affiliate(id), to: Affiliates.Get, as: :by_id
-  defdelegate delete_affiliate(id), to: Affiliates.Delete, as: :call
+  defdelegate create_affiliate(params, current_user), to: Affiliates.Create, as: :call
+  defdelegate get_affiliate(id, current_user), to: Affiliates.Get, as: :by_id
+  defdelegate delete_affiliate(id, current_user), to: Affiliates.Delete, as: :call
   defdelegate list_affiliates(params), to: Affiliates.List, as: :call
 
   defdelegate create_cost_center(params), to: CostCenters.Create, as: :call

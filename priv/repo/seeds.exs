@@ -57,11 +57,11 @@ department = %{
 {:ok, %Department{id: department_id}} = Rh.create_department(department)
 
 %{
-  name: "Carlos Tinas",
-  email: "tinas@vale.com",
+  name: "CAMUNDANGAS",
+  email: "camundagas@vli.com",
   password: "12345678",
-  cpf: "16655512312",
-  employee: :ADMIN,
+  cpf: "12312312312",
+  employee: :RECRUIT,
   affiliate_id: "90b31bc7-0706-4faf-adb9-568f08595202",
   company_id: "a2590e5b-5ac0-47a5-ba01-d63582538f90"
 }

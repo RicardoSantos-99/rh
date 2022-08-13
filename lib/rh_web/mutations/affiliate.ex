@@ -12,14 +12,14 @@ defmodule RhWeb.Mutations.Affiliate do
     field :create_affiliate, type: :affiliate do
       arg :input, non_null(:create_affiliate_input)
 
-      resolve &AffiliateResolver.create/2
+      resolve &AffiliateResolver.create/3
       middleware TranslateErrors
     end
 
     field :delete_affiliate, type: :affiliate do
       arg :id, non_null(:uuid4)
 
-      resolve &AffiliateResolver.delete/2
+      resolve &AffiliateResolver.delete/3
       middleware TranslateErrors
     end
   end

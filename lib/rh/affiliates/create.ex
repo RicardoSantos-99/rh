@@ -2,24 +2,18 @@ defmodule Rh.Affiliates.Create do
   @moduledoc """
   Create an affiliate.
   """
-
-  alias Rh.Repo
-  alias Rh.Schema.{Affiliate, Company}
-
   alias Ecto.UUID
+  alias Rh.Repo
+  alias Rh.Schema.Affiliate
+  alias Rh.Utils.Auth
 
-  def call(%{company_id: company_id} = params) do
-    company_id
-    |> UUID.cast()
-    |> handle_response(params)
-  end
-
-  defp handle_response(:error, _params), do: {:error, "Invalid UUID"}
-
-  defp handle_response({:ok, company_id}, params) do
-    case Repo.get(Company, company_id) do
-      nil -> {:error, "Company not found"}
-      _company -> handle_insert(params)
+  def call(%{company_id: company_id} = params, current_user) do
+    with {:ok, _id} <- Auth.check_access(company_id, current_user, :ADMIN),
+         {:ok, _uuid} <- UUID.cast(company_id) do
+      handle_insert(params)
+    else
+      {:error, message} -> {:error, message}
+      :error -> {:error, "Invalid UUID"}
     end
   end
 

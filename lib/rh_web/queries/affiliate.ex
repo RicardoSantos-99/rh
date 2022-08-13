@@ -10,7 +10,7 @@ defmodule RhWeb.Queries.Affiliate do
     field :get_affiliate, type: :affiliate do
       arg :id, non_null(:uuid4)
 
-      resolve &AffiliateResolver.get/2
+      resolve &AffiliateResolver.get/3
     end
 
     field :list_affiliates, list_of(:affiliate) do

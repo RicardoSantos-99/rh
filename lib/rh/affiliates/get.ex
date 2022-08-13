@@ -2,23 +2,21 @@ defmodule Rh.Affiliates.Get do
   @moduledoc """
   Get an affiliate.
   """
-  alias Rh.Repo
-  alias Rh.Schema.Affiliate
+  import Rh.Repositories.AffiliateRepository
 
   alias Ecto.UUID
+  alias Rh.Schema.Affiliate
+  alias Rh.Utils.Auth
 
-  def by_id(id) do
-    id
-    |> UUID.cast()
-    |> handle_response()
-  end
-
-  defp handle_response(:error), do: {:error, "Invalid UUID"}
-
-  defp handle_response({:ok, id}) do
-    case Repo.get(Affiliate, id) do
+  def by_id(affiliate_id, current_user) do
+    with %Affiliate{company_id: company_id} = affiliate <- find_affiliate_by_id(affiliate_id),
+         {:ok, _id} <- Auth.check_access(company_id, current_user, :ADMIN),
+         {:ok, _uuid} <- UUID.cast(affiliate_id) do
+      {:ok, affiliate}
+    else
       nil -> {:error, "Affiliate not found"}
-      affiliates -> {:ok, affiliates}
+      {:error, message} -> {:error, message}
+      :error -> {:error, "Invalid UUID"}
     end
   end
 end
