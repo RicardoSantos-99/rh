@@ -63,7 +63,9 @@ defmodule Rh.MixProject do
       {:bamboo, "~> 1.1"},
       {:guardian, "~> 2.0"},
       {:ecto_psql_extras, "~> 0.6"},
-      {:circular_buffer, "~> 0.4.0"}
+      {:circular_buffer, "~> 0.4.0"},
+      {:redix, "~> 1.1"},
+      {:castore, ">= 0.0.0"}
     ]
   end
 

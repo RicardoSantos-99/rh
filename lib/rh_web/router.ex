@@ -6,6 +6,7 @@ defmodule RhWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
     plug UUIDChecker
+    plug Plug.RequestId
   end
 
   pipeline :auth do

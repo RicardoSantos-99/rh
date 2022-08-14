@@ -33,6 +33,7 @@ defmodule Rh.Schema.Employee do
   end
 
   def changeset(struct \\ %__MODULE__{}, params) do
+    # TODO: Capitalize name and verify if cpf is valid and if email is valid
     struct
     |> cast(params, @params)
     |> validate_required(@required_params)

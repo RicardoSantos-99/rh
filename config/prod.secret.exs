@@ -16,6 +16,8 @@ config :rh, Rh.Repo,
   url: database_url,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
+config :logger, :console, metadata: [:request_id]
+
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
     raise """
