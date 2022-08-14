@@ -65,7 +65,8 @@ defmodule Rh.MixProject do
       {:ecto_psql_extras, "~> 0.6"},
       {:circular_buffer, "~> 0.4.0"},
       {:redix, "~> 1.1"},
-      {:castore, ">= 0.0.0"}
+      {:castore, ">= 0.0.0"},
+      {:git_ops, "~> 2.4.5", only: [:dev]}
     ]
   end
 
