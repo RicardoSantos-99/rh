@@ -11,7 +11,7 @@
 
 # Config
 terminate_on=$(git config --int credo.terminate)
-if [[ -z "$terminate_on" ]]; then terminate_on=16; fi
+if [ -z $terminate_on ]; then terminate_on=16; fi
 
 # test it :: run tests before commit (silently)
 mix test 2>&1 >/dev/null
@@ -33,9 +33,9 @@ echo "★ ============================== ★"
 echo ""
 
 # lint it :: credo checks before commit
-mix credo
+mix credo --strict
 CREDO_RES=$?
-if [ $CREDO_RES -ge $(terminate_on) ]; then
+if [ $CREDO_RES $(terminate_on) ]; then
   echo ""
   echo "☆ ============================================= ☆"
 	echo "☆ Credo found critical problems with your code  ☆" >&2
