@@ -23,15 +23,9 @@ config :rh, RhWeb.Endpoint,
   pubsub_server: Rh.PubSub,
   live_view: [signing_salt: "YEVRFsES"]
 
-config :rh, RhWeb.Guardian,
-  # optional
-  verify_module: Guardian.JWT,
-  issuer: "BlogAppGql",
-  ttl: {30, :days},
-  allowed_drift: 2000,
-  # optional
-  secret_key: %{"k" => "3gx0vXjUD2BJ8xfo_aQWIA", "kty" => "oct"},
-  serializer: RhWeb.Guardian
+config :rh, RhWeb.Auth.Guardian,
+  issuer: "delivery",
+  secret_key: "eif0Uz3NrVmW6Frjfx9Rbq1J/mzUWyklgtF83yNBcle2Jj6ZG6B5bwUOZ0ULJsl5"
 
 # Configures the mailer
 #

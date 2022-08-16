@@ -29,4 +29,8 @@ defmodule RhWeb.Schema.Types.Employee do
     field :cpf, non_null(:string)
     field :type, non_null(:employees_type)
   end
+
+  object :token do
+    field :token, non_null(:string)
+  end
 end

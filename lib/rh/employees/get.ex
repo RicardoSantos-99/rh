@@ -10,8 +10,8 @@ defmodule Rh.Employees.Get do
     |> handle_response()
   end
 
-  def get_by_email(email) do
-    email
+  def by_email(email) do
+    Repo.get_by(Employee, email: String.downcase(email))
   end
 
   defp handle_response(:error), do: {:error, "Invalid UUID"}

@@ -2,7 +2,7 @@ defmodule RhWeb.Resolvers.Employee do
   @moduledoc """
   This module defines the employees resolver.
   """
-  def login(%{email: email, password: password}, _context), do: Rh.login(email, password)
+  def login(params, _context), do: Rh.login(params)
 
   def get(_params, %{id: affiliate_id}, %{context: %{current_user: current_user}}) do
     Rh.get_employee(affiliate_id, current_user)

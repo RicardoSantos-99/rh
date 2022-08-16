@@ -17,7 +17,7 @@ defmodule RhWeb.Queries.Employee do
       resolve &EmployeeResolver.list/3
     end
 
-    field :login, type: :string do
+    field :login, type: :token do
       arg(:email, non_null(:string))
       arg(:password, non_null(:string))
 
