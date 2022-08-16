@@ -22,5 +22,18 @@ defmodule RhWeb.Mutations.Employee do
       resolve &EmployeeResolver.delete/3
       middleware TranslateErrors
     end
+
+    field :login, type: :token do
+      arg(:email, non_null(:string))
+      arg(:password, non_null(:string))
+
+      resolve &EmployeeResolver.login/2
+      middleware TranslateErrors
+    end
+
+    field :logout, type: :token do
+      resolve &EmployeeResolver.logout/2
+      middleware TranslateErrors
+    end
   end
 end

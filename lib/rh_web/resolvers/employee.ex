@@ -4,6 +4,10 @@ defmodule RhWeb.Resolvers.Employee do
   """
   def login(params, _context), do: Rh.login(params)
 
+  def logout(_params, %{context: %{current_user: current_user}}), do: Rh.logout(current_user)
+
+  def logout(_params, _context), do: {:error, "not logged in"}
+
   def get(_params, %{id: affiliate_id}, %{context: %{current_user: current_user}}) do
     Rh.get_employee(affiliate_id, current_user)
   end

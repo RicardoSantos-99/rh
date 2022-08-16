@@ -34,6 +34,7 @@ defmodule Rh do
   defdelegate list_departments, to: Departments.List, as: :call
 
   defdelegate login(params), to: Employees.Login, as: :call
+  defdelegate logout(current_user), to: Employees.Update, as: :revoke_token
   defdelegate create_employee(params, current_user), to: Employees.Create, as: :call
   defdelegate get_employee(id, current_user), to: Employees.Get, as: :by_id
   defdelegate get_by_email(email), to: Employees.Get, as: :by_email

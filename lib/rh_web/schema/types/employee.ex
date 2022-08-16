@@ -31,6 +31,6 @@ defmodule RhWeb.Schema.Types.Employee do
   end
 
   object :token do
-    field :token, non_null(:string)
+    field :token, :string
   end
 end

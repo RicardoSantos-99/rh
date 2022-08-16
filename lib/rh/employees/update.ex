@@ -6,4 +6,9 @@ defmodule Rh.Employees.Update do
     Ecto.Changeset.change(employee, %{token: token})
     |> Repo.update()
   end
+
+  def revoke_token(current_user) do
+    Ecto.Changeset.change(current_user, %{token: nil})
+    |> Repo.update()
+  end
 end
