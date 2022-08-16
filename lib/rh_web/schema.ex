@@ -27,12 +27,17 @@ defmodule RhWeb.Schema do
   import_types RhWeb.Mutations.CostCenter
   import_types RhWeb.Queries.CostCenter
 
+  import_types RhWeb.Schema.Types.Employee
+  import_types RhWeb.Mutations.Employee
+  import_types RhWeb.Queries.Employee
+
   query do
     import_fields :company_queries
     import_fields :occupation_queries
     import_fields :affiliate_queries
     import_fields :department_queries
     import_fields :cost_center_queries
+    import_fields :employee_queries
   end
 
   mutation do
@@ -41,5 +46,6 @@ defmodule RhWeb.Schema do
     import_fields :affiliate_mutation
     import_fields :department_mutation
     import_fields :cost_center_mutation
+    import_fields :employee_mutation
   end
 end

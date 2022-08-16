@@ -23,6 +23,16 @@ config :rh, RhWeb.Endpoint,
   pubsub_server: Rh.PubSub,
   live_view: [signing_salt: "YEVRFsES"]
 
+config :rh, RhWeb.Guardian,
+  # optional
+  verify_module: Guardian.JWT,
+  issuer: "BlogAppGql",
+  ttl: {30, :days},
+  allowed_drift: 2000,
+  # optional
+  secret_key: %{"k" => "3gx0vXjUD2BJ8xfo_aQWIA", "kty" => "oct"},
+  serializer: RhWeb.Guardian
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

@@ -4,10 +4,14 @@ defmodule Rh.Employees.Get do
 
   alias Ecto.UUID
 
-  def by_id(id) do
+  def by_id(id, _current_user) do
     id
     |> UUID.cast()
     |> handle_response()
+  end
+
+  def get_by_email(email) do
+    email
   end
 
   defp handle_response(:error), do: {:error, "Invalid UUID"}

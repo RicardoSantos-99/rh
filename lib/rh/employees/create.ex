@@ -4,7 +4,7 @@ defmodule Rh.Employees.Create do
 
   alias Ecto.UUID
 
-  def call(%{affiliate_id: affiliate_id} = params) do
+  def call(%{affiliate_id: affiliate_id} = params, _current_user) do
     affiliate_id
     |> UUID.cast()
     |> handle_response(params)

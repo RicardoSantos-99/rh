@@ -1,7 +1,6 @@
 defmodule RhWeb.Auth.Guardian do
   use Guardian, otp_app: :delivery
 
-  alias Rh.Employees.Get, as: EmployeeGet
   alias Rh.Error
   alias Rh.Schema.Employee
 
@@ -10,11 +9,11 @@ defmodule RhWeb.Auth.Guardian do
   def resource_from_claims(claims) do
     claims
     |> Map.get("sub")
-    |> EmployeeGet.by_id()
+    |> Rh.get_employee(%{})
   end
 
   def authenticate(%{"id" => employee_id, "password" => password}) do
-    with {:ok, %Employee{password_hash: hash} = user} <- EmployeeGet.by_id(employee_id),
+    with {:ok, %Employee{password_hash: hash} = user} <- Rh.get_employee(employee_id, %{}),
          true <- Pbkdf2.verify_pass(password, hash),
          {:ok, token, _claims} <- encode_and_sign(user) do
       {:ok, token}

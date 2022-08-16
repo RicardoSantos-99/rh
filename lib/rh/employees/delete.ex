@@ -7,7 +7,7 @@ defmodule Rh.Employees.Delete do
 
   alias Ecto.UUID
 
-  def call(id) do
+  def call(id, _current_user) do
     id
     |> UUID.cast()
     |> handle_response()
