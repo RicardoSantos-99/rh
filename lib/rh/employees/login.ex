@@ -1,6 +1,6 @@
 defmodule Rh.Employees.Login do
   alias Rh.Employees
-  alias Rh.Repo
+  alias Rh.Repositories.EmployeeRepository
   alias Rh.Schema.Employee
   alias RhWeb.Auth.Guardian
 
@@ -13,8 +13,7 @@ defmodule Rh.Employees.Login do
   end
 
   def login_with_email_pass(email, password) do
-    %Employee{password_hash: hash} =
-      employee = Repo.get_by(Employee, email: String.downcase(email))
+    %Employee{password_hash: hash} = employee = EmployeeRepository.find_employee_by_email(email)
 
     case Pbkdf2.verify_pass(password, hash) do
       true -> {:ok, employee}

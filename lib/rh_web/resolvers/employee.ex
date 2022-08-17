@@ -14,6 +14,12 @@ defmodule RhWeb.Resolvers.Employee do
 
   def get(_, _, _), do: {:error, "Access denied"}
 
+  def get_by_email(_params, %{email: email}, %{context: %{current_user: current_user}}) do
+    Rh.get_by_email(email, current_user)
+  end
+
+  def get_by_email(_, _, _), do: {:error, "Access denied"}
+
   def create(_params, %{input: params}, %{context: %{current_user: current_user}}) do
     Rh.create_employee(params, current_user)
   end

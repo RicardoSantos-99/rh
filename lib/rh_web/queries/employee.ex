@@ -13,6 +13,12 @@ defmodule RhWeb.Queries.Employee do
       resolve &EmployeeResolver.get/3
     end
 
+    field :get_employee_by_email, type: :employee do
+      arg :email, non_null(:string)
+
+      resolve &EmployeeResolver.get_by_email/3
+    end
+
     field :list_employees, list_of(:employee) do
       resolve &EmployeeResolver.list/3
     end

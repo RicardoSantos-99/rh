@@ -37,7 +37,7 @@ defmodule Rh do
   defdelegate logout(current_user), to: Employees.Update, as: :revoke_token
   defdelegate create_employee(params, current_user), to: Employees.Create, as: :call
   defdelegate get_employee(id, current_user), to: Employees.Get, as: :by_id
-  defdelegate get_by_email(email), to: Employees.Get, as: :by_email
+  defdelegate get_by_email(email, current_user), to: Employees.Get, as: :by_email
   defdelegate delete_employee(id, current_user), to: Employees.Delete, as: :call
   defdelegate list_employees(current_user), to: Employees.List, as: :call
 end

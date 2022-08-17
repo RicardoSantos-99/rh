@@ -12,10 +12,7 @@ defmodule Rh.Repositories.EmployeeRepository do
   end
 
   def find_employee_by_email(email) do
-    Repo.one(
-      from a in Employee,
-        where: a.email == ^email
-    )
+    Repo.get_by(Employee, email: String.downcase(email))
   end
 
   def find_employee_by_company_id(company_id) do
