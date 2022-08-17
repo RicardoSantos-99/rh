@@ -27,6 +27,10 @@ defmodule RhWeb.Mutations.AffiliatedTest do
 
       {:ok, company} = Rh.create_company(company_params)
 
+      conn =
+        build_conn()
+        |> put_req_header("authorization", "Bearer token")
+
       {:ok, conn: conn, company: company}
     end
 

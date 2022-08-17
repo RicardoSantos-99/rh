@@ -31,6 +31,9 @@ defmodule RhWeb.Schema do
   import_types RhWeb.Mutations.Employee
   import_types RhWeb.Queries.Employee
 
+  import_types RhWeb.Schema.Types.User
+  import_types RhWeb.Mutations.User
+
   query do
     import_fields :company_queries
     import_fields :occupation_queries
@@ -47,5 +50,6 @@ defmodule RhWeb.Schema do
     import_fields :department_mutation
     import_fields :cost_center_mutation
     import_fields :employee_mutation
+    import_fields :user_mutation
   end
 end
