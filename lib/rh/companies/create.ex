@@ -4,11 +4,13 @@ defmodule Rh.Companies.Create do
   """
 
   alias Rh.Repo
-  alias Rh.Schema.Company
+  alias Rh.Schema.{Company, User}
 
-  def call(params) do
+  def call(params, %User{}) do
     params
     |> Company.changeset()
     |> Repo.insert()
   end
+
+  def call(_params, _), do: {:error, "Access denied"}
 end

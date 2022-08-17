@@ -12,14 +12,14 @@ defmodule RhWeb.Mutations.Company do
     field :create_company, type: :company do
       arg :input, non_null(:create_company_input)
 
-      resolve &CompanyResolver.create/2
+      resolve &CompanyResolver.create/3
       middleware TranslateErrors
     end
 
     field :delete_company, type: :company do
       arg :id, non_null(:uuid4)
 
-      resolve &CompanyResolver.delete/2
+      resolve &CompanyResolver.delete/3
       middleware TranslateErrors
     end
   end

@@ -5,7 +5,7 @@ defmodule RhWeb.Context do
   import Plug.Conn
 
   alias Rh.Repo
-  alias Rh.Schema.Employee
+  alias Rh.Schema.{Employee, User}
 
   def init(opts), do: opts
 
@@ -27,12 +27,34 @@ defmodule RhWeb.Context do
   end
 
   defp authorize(token) do
-    Employee
-    |> where(token: ^token)
-    |> Repo.one()
-    |> case do
+    case check_token(token) do
       nil -> {:error, "invalid authorization token"}
       user -> {:ok, user}
     end
+  end
+
+  defp check_token(token) do
+    with %Employee{} = employee <- find_employee(token) do
+      employee
+    else
+      nil ->
+        with %User{} = user <- find_user(token) do
+          user
+        else
+          nil -> nil
+        end
+    end
+  end
+
+  defp find_user(token) do
+    User
+    |> where(token: ^token)
+    |> Repo.one()
+  end
+
+  defp find_employee(token) do
+    Employee
+    |> where(token: ^token)
+    |> Repo.one()
   end
 end

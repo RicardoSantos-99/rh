@@ -7,13 +7,13 @@ defmodule Rh.Companies.Get do
 
   alias Ecto.UUID
 
-  def by_id(id) do
+  def by_id(id, _current_user) do
     id
     |> UUID.cast()
     |> handle_response()
   end
 
-  def by_cnpj(cnpj) do
+  def by_cnpj(cnpj, _current_user) do
     case Repo.get_by(Company, cnpj: cnpj) do
       nil -> {:error, "Company not found"}
       company -> {:ok, company}

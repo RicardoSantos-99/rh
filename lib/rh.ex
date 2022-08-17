@@ -5,11 +5,11 @@ defmodule Rh do
 
   alias Rh.{Affiliates, Companies, CostCenters, Departments, Employees, Occupations, Users}
 
-  defdelegate create_company(params), to: Companies.Create, as: :call
-  defdelegate get_company(id), to: Companies.Get, as: :by_id
-  defdelegate get_company_by_cnpj(cnpj), to: Companies.Get, as: :by_cnpj
-  defdelegate delete_company(id), to: Companies.Delete, as: :call
-  defdelegate list_companies, to: Companies.List, as: :call
+  defdelegate create_company(params, current_user), to: Companies.Create, as: :call
+  defdelegate get_company(id, current_user), to: Companies.Get, as: :by_id
+  defdelegate get_company_by_cnpj(cnpj, current_user), to: Companies.Get, as: :by_cnpj
+  defdelegate delete_company(id, current_user), to: Companies.Delete, as: :call
+  defdelegate list_companies(current_user), to: Companies.List, as: :call
 
   defdelegate create_occupation(params), to: Occupations.Create, as: :call
   defdelegate get_occupation(id), to: Occupations.Get, as: :by_id
@@ -42,5 +42,8 @@ defmodule Rh do
   defdelegate list_employees(current_user), to: Employees.List, as: :call
 
   defdelegate user_login(params), to: Users.Create, as: :login
+  defdelegate user_create_employee(params, current_user), to: Users.Create, as: :create_employee
+  defdelegate user_create_affiliate(params, current_user), to: Users.Create, as: :create_affiliate
+
   # defdelegate logout(current_user), to: Users.Update, as: :revoke_token
 end

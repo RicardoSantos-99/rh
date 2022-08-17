@@ -19,7 +19,7 @@ defmodule RhWeb.Schema.Types.Employee do
     field :name, non_null(:string)
     field :cpf, non_null(:string)
     field :token, non_null(:string)
-    field :type, non_null(:employees_type)
+    field :employees_type, non_null(:employees_type)
   end
 
   input_object :create_employee_input do

@@ -17,26 +17,32 @@ Rh.Users.Create.call(user)
 
 company = %{cnpj: "12312312312315", corporate_name: "RH", name: "ninho de camundangas"}
 
-{:ok, %Company{id: company_id}} = Rh.create_company(company)
+# {:ok, %Company{id: company_id}} = Rh.create_company(company)
 
 develop = %{
   name: "dev",
   description: "dev de software",
   code: 1,
-  company_id: company_id
+  company_id: "company_id"
 }
 
-qa = %{name: "QA", description: "Qualidade de software", code: 2, company_id: company_id}
-suporte = %{name: "Suporte", description: "Suporte de software", code: 3, company_id: company_id}
+qa = %{name: "QA", description: "Qualidade de software", code: 2, company_id: "company_id"}
 
-Rh.create_occupation(develop)
-Rh.create_occupation(qa)
-{:ok, %Occupation{id: _occupation_id}} = Rh.create_occupation(suporte)
+suporte = %{
+  name: "Suporte",
+  description: "Suporte de software",
+  code: 3,
+  company_id: "company_id"
+}
+
+# Rh.create_occupation(develop)
+# Rh.create_occupation(qa)
+# {:ok, %Occupation{id: _occupation_id}} = Rh.create_occupation(suporte)
 
 _affiliated = %{
   name: "vli",
   cnpj: "12341234123412",
-  company_id: company_id
+  company_id: "company_id"
 }
 
 # {:ok, %Affiliate{id: affiliate_id}} = Rh.create_affiliate(affiliated)

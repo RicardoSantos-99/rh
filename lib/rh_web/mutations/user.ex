@@ -17,9 +17,18 @@ defmodule RhWeb.Mutations.User do
       middleware TranslateErrors
     end
 
-    # field :user_logout, type: :token do
-    #   resolve &UserResolver.logout/2
-    #   middleware TranslateErrors
-    # end
+    field :user_create_employee, type: :employee do
+      arg :input, non_null(:user_create_employee)
+
+      resolve &UserResolver.user_create_employee/3
+      middleware TranslateErrors
+    end
+
+    field :user_create_affiliate, type: :employee do
+      arg :input, non_null(:user_create_affiliate)
+
+      resolve &UserResolver.user_create_affiliate/3
+      middleware TranslateErrors
+    end
   end
 end

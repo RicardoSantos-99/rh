@@ -1,6 +1,6 @@
 defmodule Rh.Users.Create do
   alias Rh.Repo
-  alias Rh.Schema.User
+  alias Rh.Schema.{Affiliate, Employee, User}
   alias RhWeb.Auth.Guardian
 
   def call(params) do
@@ -29,5 +29,17 @@ defmodule Rh.Users.Create do
   def store_token(%User{} = user, token) do
     Ecto.Changeset.change(user, %{token: token})
     |> Repo.update()
+  end
+
+  def create_employee(params, %User{}) do
+    params
+    |> Employee.changeset()
+    |> Repo.insert()
+  end
+
+  def create_affiliate(params, %User{}) do
+    params
+    |> Affiliate.changeset()
+    |> Repo.insert()
   end
 end

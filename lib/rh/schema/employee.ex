@@ -13,7 +13,7 @@ defmodule Rh.Schema.Employee do
   @foreign_key_type :binary_id
 
   @employees_type [:VALIDATOR, :RECRUIT, :MANAGER, :ADMIN]
-  @required_params [:email, :password, :name, :cpf, :employee, :affiliate_id, :company_id]
+  @required_params [:email, :password, :name, :cpf, :employees_type, :affiliate_id, :company_id]
   @params [:token] ++ @required_params
 
   schema "employees" do
@@ -24,7 +24,7 @@ defmodule Rh.Schema.Employee do
     field :cpf, :string
     field :token, :string
 
-    field :employee, Enum, values: @employees_type
+    field :employees_type, Enum, values: @employees_type
 
     belongs_to :affiliate, Affiliate
     belongs_to :company, Company

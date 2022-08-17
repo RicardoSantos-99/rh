@@ -11,7 +11,11 @@ defmodule Rh.Utils.Auth do
     :ADMIN => 3
   }
 
-  def check_access(id, %Employee{company_id: user_company_id, employee: employee_auth}, auth) do
+  def check_access(
+        id,
+        %Employee{company_id: user_company_id, employees_type: employee_auth},
+        auth
+      ) do
     with company_id <- Repo.one(from a in Company, where: a.id == ^id, select: a.id),
          true <- check_company(company_id, user_company_id),
          :permitted <- has_permission(employee_auth, auth) do

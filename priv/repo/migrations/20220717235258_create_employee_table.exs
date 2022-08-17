@@ -7,7 +7,7 @@ defmodule Rh.Repo.Migrations.CreateEmployeeTable do
       add :password_hash, :string
       add :name, :string
       add :cpf, :string
-      add :employee, :employment_type
+      add :employees_type, :employment_type
       add :affiliate_id, references(:affiliates, type: :binary_id)
 
       timestamps()

@@ -5,7 +5,7 @@ defmodule Rh.Companies.List do
   alias Rh.Repo
   alias Rh.Schema.Company
 
-  def call do
+  def call(_current_user) do
     Repo.all(Company)
     |> handle_response()
   end
