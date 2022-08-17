@@ -28,7 +28,7 @@ defmodule RhWeb.Mutations.CostCenterTest do
       company = build(:company)
       employee = build(:employee)
 
-      {:ok, %{id: company_id}} = Rh.create_company(company)
+      {:ok, %{id: company_id}} = Rh.create_company(company, %{})
 
       affiliated_params = build(:affiliated, %{company_id: company_id})
       {:ok, %{id: affiliated_id}} = Rh.create_affiliate(affiliated_params, employee)
@@ -141,7 +141,7 @@ defmodule RhWeb.Mutations.CostCenterTest do
       company = build(:company)
       employee = build(:employee)
 
-      {:ok, %{id: company_id}} = Rh.create_company(company)
+      {:ok, %{id: company_id}} = Rh.create_company(company, %{})
 
       affiliated_params = build(:affiliated, %{company_id: company_id})
       {:ok, %{id: affiliated_id}} = Rh.create_affiliate(affiliated_params, employee)

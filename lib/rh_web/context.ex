@@ -34,13 +34,13 @@ defmodule RhWeb.Context do
   end
 
   defp check_token(token) do
-    with %Employee{} = employee <- find_employee(token) do
-      employee
-    else
+    case find_employee(token) do
+      %Employee{} = employee ->
+        employee
+
       nil ->
-        with %User{} = user <- find_user(token) do
-          user
-        else
+        case find_user(token) do
+          %User{} = user -> user
           nil -> nil
         end
     end
