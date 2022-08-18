@@ -30,5 +30,12 @@ defmodule RhWeb.Mutations.User do
       resolve &UserResolver.user_create_affiliate/3
       middleware TranslateErrors
     end
+
+    field :user_create_company, type: :company do
+      arg :input, non_null(:user_create_company)
+
+      resolve &UserResolver.user_create_company/3
+      middleware TranslateErrors
+    end
   end
 end

@@ -1,6 +1,6 @@
 defmodule Rh.Users.Create do
   alias Rh.Repo
-  alias Rh.Schema.{Affiliate, Employee, User}
+  alias Rh.Schema.{Affiliate, Company, Employee, User}
   alias RhWeb.Auth.Guardian
 
   def call(params) do
@@ -40,6 +40,12 @@ defmodule Rh.Users.Create do
   def create_affiliate(params, %User{}) do
     params
     |> Affiliate.changeset()
+    |> Repo.insert()
+  end
+
+  def create_company(params, %User{}) do
+    params
+    |> Company.changeset()
     |> Repo.insert()
   end
 end

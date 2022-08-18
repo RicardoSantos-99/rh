@@ -4,15 +4,17 @@ defmodule Rh.Companies.Delete do
   """
 
   alias Rh.Repo
-  alias Rh.Schema.Company
+  alias Rh.Schema.{Company, User}
 
   alias Ecto.UUID
 
-  def call(id, _current_user) do
+  def call(id, %User{}) do
     id
     |> UUID.cast()
     |> handle_response()
   end
+
+  def call(_params, _), do: {:error, "Access denied"}
 
   defp handle_response(:error), do: {:error, "Invalid UUID"}
 

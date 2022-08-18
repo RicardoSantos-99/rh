@@ -13,6 +13,12 @@ defmodule RhWeb.Resolvers.User do
 
   def user_create_affiliate(_, _, _), do: {:error, "Access denied"}
 
+  def user_create_company(_params, %{input: params}, %{context: %{current_user: current_user}}) do
+    Rh.user_create_company(params, current_user)
+  end
+
+  def user_create_company(_, _, _), do: {:error, "Access denied"}
+
   # def logout(_params, %{context: %{current_user: current_user}}), do: Rh.logout(current_user)
 
   # def logout(_params, _context), do: {:error, "not logged in"}

@@ -44,6 +44,7 @@ defmodule Rh do
   defdelegate user_login(params), to: Users.Create, as: :login
   defdelegate user_create_employee(params, current_user), to: Users.Create, as: :create_employee
   defdelegate user_create_affiliate(params, current_user), to: Users.Create, as: :create_affiliate
+  defdelegate user_create_company(params, current_user), to: Users.Create, as: :create_company
 
   # defdelegate logout(current_user), to: Users.Update, as: :revoke_token
 end
