@@ -23,10 +23,4 @@ defmodule RhWeb.Schema.Types.User do
     field :cnpj, non_null(:string)
     field :company_id, non_null(:uuid4)
   end
-
-  input_object :user_create_company do
-    field :name, non_null(:string)
-    field :corporate_name, non_null(:string)
-    field :cnpj, non_null(:string)
-  end
 end
