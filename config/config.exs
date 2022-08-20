@@ -25,7 +25,7 @@ config :rh, RhWeb.Endpoint,
 
 config :rh, RhWeb.Auth.Guardian,
   issuer: "delivery",
-  secret_key: "eif0Uz3NrVmW6Frjfx9Rbq1J/mzUWyklgtF83yNBcle2Jj6ZG6B5bwUOZ0ULJsl5"
+  secret_key: System.get_env("secret_key_base")
 
 # Configures the mailer
 #

@@ -12,7 +12,6 @@
 
 alias Rh.Schema.{Company, Affiliate, Employee, Occupation, CostCenter, Department}
 
-user = %{email: "ricardo@gmail.com", password: "1234567878", name: "Ricardo"}
 Rh.Users.Create.call(user)
 
 company = %{cnpj: "12312312312315", corporate_name: "RH", name: "ninho de camundangas"}
