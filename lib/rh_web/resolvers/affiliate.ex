@@ -20,8 +20,8 @@ defmodule RhWeb.Resolvers.Affiliate do
 
   def delete(_, _, _), do: {:error, "Access denied"}
 
-  def list(_params, _args, %{context: %{current_user: current_user}}) do
-    Rh.list_affiliates(current_user)
+  def list(_params, args, %{context: %{current_user: current_user}}) do
+    Rh.list_affiliates(args, current_user)
   end
 
   def list(_, _, _), do: {:error, "Access denied"}

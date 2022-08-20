@@ -14,6 +14,7 @@ defmodule RhWeb.Queries.Affiliate do
     end
 
     field :list_affiliates, list_of(:affiliate) do
+      arg :company_id, :uuid4
       resolve &AffiliateResolver.list/3
     end
   end
