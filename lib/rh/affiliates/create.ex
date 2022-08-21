@@ -10,7 +10,9 @@ defmodule Rh.Affiliates.Create do
   def call(params, %{company_id: company_id} = current_user) do
     with {:ok, _id} <- Auth.check_access(company_id, current_user, :ADMIN),
          {:ok, _uuid} <- UUID.cast(company_id) do
-      handle_insert(params)
+      params
+      |> Map.put_new(:company_id, company_id)
+      |> handle_insert()
     else
       {:error, message} -> {:error, message}
       :error -> {:error, "Invalid UUID"}

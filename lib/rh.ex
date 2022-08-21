@@ -21,7 +21,7 @@ defmodule Rh do
   defdelegate delete_affiliate(id, current_user), to: Affiliates.Delete, as: :call
   defdelegate list_affiliates(company_id, current_user), to: Affiliates.List, as: :call
 
-  defdelegate create_cost_center(params), to: CostCenters.Create, as: :call
+  defdelegate create_cost_center(params, current_user), to: CostCenters.Create, as: :call
   defdelegate get_cost_center(id), to: CostCenters.Get, as: :by_id
   defdelegate get_cost_center_by_code(id), to: CostCenters.Get, as: :get_by_code
   defdelegate delete_cost_center(id), to: CostCenters.Delete, as: :call

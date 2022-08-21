@@ -1,4 +1,5 @@
 defmodule Rh.Users.Create do
+  use TODO
   alias Rh.Repo
   alias Rh.Schema.{Affiliate, Company, Employee, User}
   alias RhWeb.Auth.Guardian
@@ -31,12 +32,14 @@ defmodule Rh.Users.Create do
     |> Repo.update()
   end
 
+  @todo "0.0.1": "check if affiliate belongs to company"
   def create_employee(params, %User{}) do
     params
     |> Employee.changeset()
     |> Repo.insert()
   end
 
+  @todo "0.0.1": "check if affiliate belongs to company"
   def create_affiliate(params, %User{}) do
     params
     |> Affiliate.changeset()

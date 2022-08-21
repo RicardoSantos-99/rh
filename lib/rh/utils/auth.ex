@@ -11,6 +11,10 @@ defmodule Rh.Utils.Auth do
     :ADMIN => 3
   }
 
+  @doc """
+  Check if the user has the right permissions to access the company.
+  id is company_id
+  """
   def check_access(
         id,
         %Employee{company_id: user_company_id, employees_type: employee_auth},

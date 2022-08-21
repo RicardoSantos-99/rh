@@ -66,7 +66,8 @@ defmodule Rh.MixProject do
       {:circular_buffer, "~> 0.4.0"},
       {:redix, "~> 1.1"},
       {:castore, ">= 0.0.0"},
-      {:git_ops, "~> 2.4.5", only: [:dev]}
+      {:git_ops, "~> 2.4.5", only: [:dev]},
+      {:todo, "~> 1.5"}
     ]
   end
 

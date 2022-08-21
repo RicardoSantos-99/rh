@@ -1,7 +1,7 @@
 defmodule Rh.Factory do
   @moduledoc false
 
-  use ExMachina.Ecto, repo: Delivery.Repo
+  use ExMachina.Ecto, repo: Rh.Repo
 
   def employee_factory do
     %{

@@ -3,6 +3,8 @@ defmodule Rh.Schema.Employee do
   Employee schema.
   """
   use Ecto.Schema
+  use TODO
+
   import Ecto.Changeset
 
   alias Ecto.Enum
@@ -32,8 +34,7 @@ defmodule Rh.Schema.Employee do
     timestamps()
   end
 
-  # credo:disable-for-next-line
-  # TODO: Capitalize name and verify if cpf is valid and if email is valid
+  @todo "0.0.1": "Capitalize name and verify if cpf is valid and if email is valid"
   def changeset(struct \\ %__MODULE__{}, params) do
     struct
     |> cast(params, @params)

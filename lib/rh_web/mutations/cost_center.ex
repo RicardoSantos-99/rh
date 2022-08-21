@@ -13,7 +13,7 @@ defmodule RhWeb.Mutations.CostCenter do
     field :create_cost_center, type: :cost_center do
       arg :input, non_null(:create_cost_center_input)
 
-      resolve &CostCenterResolver.create/2
+      resolve &CostCenterResolver.create/3
       middleware TranslateErrors
     end
 
