@@ -35,7 +35,7 @@ defmodule RhWeb.Queries.DepartmentTest do
       {:ok, %{id: affiliated_id}} = Rh.create_affiliate(affiliated_params, employee)
 
       cost_center_params = build(:cost_center, %{affiliate_id: affiliated_id})
-      {:ok, %{id: cost_center_id}} = Rh.create_cost_center(cost_center_params)
+      {:ok, %{id: cost_center_id}} = Rh.create_cost_center(cost_center_params, %{})
 
       department_params = build(:department, %{cost_center_id: cost_center_id})
       {:ok, %{id: department_id}} = Rh.create_department(department_params)

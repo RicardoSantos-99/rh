@@ -147,7 +147,7 @@ defmodule RhWeb.Mutations.CostCenterTest do
       {:ok, %{id: affiliated_id}} = Rh.create_affiliate(affiliated_params, employee)
 
       cost_center_params = build(:cost_center, %{affiliate_id: affiliated_id})
-      {:ok, %{id: cost_center_id}} = Rh.create_cost_center(cost_center_params)
+      {:ok, %{id: cost_center_id}} = Rh.create_cost_center(cost_center_params, %{})
 
       {:ok, conn: conn, cost_center_id: cost_center_id}
     end
