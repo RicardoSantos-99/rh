@@ -1,21 +1,18 @@
 defmodule Rh.Employees.Create do
   alias Rh.Repo
-  alias Rh.Schema.{Affiliate, Employee}
+  alias Rh.Schema.Employee
+  alias Rh.Utils.Auth
 
   alias Ecto.UUID
 
-  def call(%{affiliate_id: affiliate_id} = params, _current_user) do
-    affiliate_id
-    |> UUID.cast()
-    |> handle_response(params)
-  end
-
-  defp handle_response(:error, _params), do: {:error, "Invalid UUID"}
-
-  defp handle_response({:ok, affiliate_id}, params) do
-    case Repo.get(Affiliate, affiliate_id) do
-      nil -> {:error, "Affiliate not found"}
-      _affiliate -> handle_insert(params)
+  def call(%{affiliate_id: affiliate_id} = params, %{company_id: company_id} = current_user) do
+    with {:ok, _id} <- Auth.check_access(company_id, current_user, :ADMIN),
+         {:ok, _uuid} <- UUID.cast(affiliate_id) do
+      params
+      |> handle_insert()
+    else
+      {:error, message} -> {:error, message}
+      :error -> {:error, "Invalid UUID"}
     end
   end
 

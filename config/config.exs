@@ -24,8 +24,8 @@ config :rh, RhWeb.Endpoint,
   live_view: [signing_salt: "YEVRFsES"]
 
 config :rh, RhWeb.Auth.Guardian,
-  issuer: "delivery",
-  secret_key: System.get_env("secret_key_base")
+  issuer: "rh",
+  secret_key: "L7SsPiuqdxK+kT85Y+IcgxTxhk3d++xGjDg/KCKTwFLeiwPx1bfgrHwEJdIxaZK2"
 
 # Configures the mailer
 #
