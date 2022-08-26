@@ -2,23 +2,24 @@ defmodule Rh.Employees.Delete do
   @moduledoc """
     Delete an Employees.
   """
+
+  import Rh.Repositories.EmployeeRepository
+
   alias Rh.Repo
   alias Rh.Schema.Employee
+  alias Rh.Utils.Auth
 
   alias Ecto.UUID
 
-  def call(id, _current_user) do
-    id
-    |> UUID.cast()
-    |> handle_response()
-  end
-
-  defp handle_response(:error), do: {:error, "Invalid UUID"}
-
-  defp handle_response({:ok, id}) do
-    case Repo.get(Employee, id) do
+  def call(employee_id, current_user) do
+    with %Employee{company_id: company_id} = employee <- find_employee_by_id(employee_id),
+         {:ok, _id} <- Auth.check_access(company_id, current_user, :ADMIN),
+         {:ok, _uuid} <- UUID.cast(employee_id) do
+      Repo.delete(employee)
+    else
       nil -> {:error, "Employee not found"}
-      employee -> Repo.delete(employee)
+      {:error, message} -> {:error, message}
+      :error -> {:error, "Invalid UUID"}
     end
   end
 end
