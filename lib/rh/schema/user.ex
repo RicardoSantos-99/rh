@@ -10,7 +10,9 @@ defmodule Rh.Schema.User do
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_params [:email, :password, :name]
-
+  @typedoc """
+    Employees representation.
+  """
   @type t :: %__MODULE__{
           email: String.t(),
           password: String.t(),

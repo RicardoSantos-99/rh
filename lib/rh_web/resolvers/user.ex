@@ -20,7 +20,7 @@ defmodule RhWeb.Resolvers.User do
   def user_create_company(_, _, _), do: {:error, "Access denied"}
 
   def create_occupation(_params, %{input: params}, %{context: %{current_user: current_user}}) do
-    Rh.create_occupation(params, current_user)
+    Rh.user_create_occupation(params, current_user)
   end
 
   def create_occupation(_, _, _), do: {:error, "Access denied"}

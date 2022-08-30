@@ -3,13 +3,23 @@ defmodule Rh.Schema.Employee do
   Employee schema.
   """
   use Ecto.Schema
+  use EnumType
   use TODO
 
   import Ecto.Changeset
 
-  alias Ecto.Enum
+  alias Ecto.{Enum, UUID}
   alias Rh.Schema.{Affiliate, Company}
   alias Rh.Utils.Password
+
+  defenum EmployeeEnum do
+    value VALIDATOR, :VALIDATOR
+    value RECRUIT, :RECRUIT
+    value MANAGER, :MANAGER
+    value ADMIN, :ADMIN
+
+    default(VALIDATOR)
+  end
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -17,6 +27,20 @@ defmodule Rh.Schema.Employee do
   @employees_type [:VALIDATOR, :RECRUIT, :MANAGER, :ADMIN]
   @required_params [:email, :password, :name, :cpf, :employees_type, :affiliate_id, :company_id]
   @params [:token] ++ @required_params
+
+  @typedoc """
+    Employees representation.
+  """
+  @type t :: %__MODULE__{
+          email: String.t(),
+          password: String.t(),
+          name: String.t(),
+          cpf: String.t(),
+          employees_type: EmployeeEnum.t(),
+          affiliate_id: UUID.t(),
+          company_id: UUID.t(),
+          token: String.t() | nil
+        }
 
   schema "employees" do
     field :email, :string
