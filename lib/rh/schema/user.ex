@@ -11,6 +11,13 @@ defmodule Rh.Schema.User do
 
   @required_params [:email, :password, :name]
 
+  @type t :: %__MODULE__{
+          email: String.t(),
+          password: String.t(),
+          name: String.t(),
+          token: String.t() | nil
+        }
+
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true

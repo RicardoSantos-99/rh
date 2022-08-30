@@ -7,4 +7,8 @@ defmodule Rh.Repositories.CompanyRepository do
   def select_company_id(id) do
     Repo.one(from a in Company, where: a.id == ^id, select: a.id)
   end
+
+  def companies do
+    Repo.all(Company)
+  end
 end

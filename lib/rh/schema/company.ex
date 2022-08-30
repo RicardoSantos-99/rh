@@ -11,6 +11,12 @@ defmodule Rh.Schema.Company do
 
   @required_params [:cnpj, :name, :corporate_name]
 
+  @type t :: %__MODULE__{
+          cnpj: String.t(),
+          name: String.t(),
+          corporate_name: String.t()
+        }
+
   schema "companies" do
     field :cnpj, :string
     field :name, :string

@@ -6,6 +6,7 @@ defmodule Rh.Companies.Create do
   alias Rh.Repo
   alias Rh.Schema.{Company, User}
 
+  @spec call(Company.t(), User.t()) :: Company.t()
   def call(params, %User{}) do
     params
     |> Company.changeset()

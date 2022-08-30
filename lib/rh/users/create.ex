@@ -1,9 +1,10 @@
 defmodule Rh.Users.Create do
   use TODO
   alias Rh.Repo
-  alias Rh.Schema.{Affiliate, Company, Employee, User}
+  alias Rh.Schema.{Affiliate, Company, Employee, Occupation, User}
   alias RhWeb.Auth.Guardian
 
+  @todo "0.0.1": "remove ecto to repository"
   def call(params) do
     params
     |> User.changeset()
@@ -33,22 +34,28 @@ defmodule Rh.Users.Create do
   end
 
   @todo "0.0.1": "check if affiliate belongs to company"
-  def create_employee(params, %User{}) do
+  def employee(params, %User{}) do
     params
     |> Employee.changeset()
     |> Repo.insert()
   end
 
   @todo "0.0.1": "check if affiliate belongs to company"
-  def create_affiliate(params, %User{}) do
+  def affiliate(params, %User{}) do
     params
     |> Affiliate.changeset()
     |> Repo.insert()
   end
 
-  def create_company(params, %User{}) do
+  def company(params, %User{}) do
     params
     |> Company.changeset()
+    |> Repo.insert()
+  end
+
+  def occupation(params, %Occupation{}) do
+    params
+    |> Occupation.changeset()
     |> Repo.insert()
   end
 end
