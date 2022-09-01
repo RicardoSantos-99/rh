@@ -68,7 +68,8 @@ defmodule Rh.MixProject do
       {:castore, ">= 0.0.0"},
       {:git_ops, "~> 2.4.5", only: [:dev]},
       {:todo, "~> 1.5"},
-      {:enum_type, "~> 1.1.0"}
+      {:enum_type, "~> 1.1.0"},
+      {:passgen, "~> 0.1.1"}
     ]
   end
 

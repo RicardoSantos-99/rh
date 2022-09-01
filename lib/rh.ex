@@ -78,7 +78,9 @@ defmodule Rh do
   defdelegate delete_department(id), to: Departments.Delete, as: :call
   defdelegate list_departments, to: Departments.List, as: :call
 
+  @spec login(%{email: String.t(), password: String.t()}) :: String.t()
   defdelegate login(params), to: Employees.Login, as: :call
+
   defdelegate logout(current_user), to: Employees.Update, as: :revoke_token
   defdelegate create_employee(params, current_user), to: Employees.Create, as: :call
   defdelegate get_employee(id, current_user), to: Employees.Get, as: :by_id
@@ -86,6 +88,7 @@ defmodule Rh do
   defdelegate delete_employee(id, current_user), to: Employees.Delete, as: :call
   defdelegate list_employees(current_user), to: Employees.List, as: :call
 
+  @spec user_login(%{email: String.t(), password: String.t()}) :: String.t()
   defdelegate user_login(params), to: Users.Create, as: :login
 
   @spec user_create_employee(Employee.t(), User.t()) :: Employee.t()

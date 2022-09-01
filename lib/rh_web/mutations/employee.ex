@@ -9,7 +9,7 @@ defmodule RhWeb.Mutations.Employee do
   alias Crudry.Middlewares.TranslateErrors
 
   object :employee_mutation do
-    field :create_employee, type: :employee do
+    field :create_employee, type: :employee_output do
       arg :input, non_null(:create_employee_input)
 
       resolve &EmployeeResolver.create/3

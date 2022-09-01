@@ -4,12 +4,12 @@ defmodule Rh.UserEmail do
   """
   import Swoosh.Email
 
-  def send_email(%{name: name, email: email}) do
+  def send_email(%{name: name, email: email, password: password}) do
     new()
-    |> from("rh@gmail.com")
-    |> to(email)
+    |> to({name, email})
+    |> from({"rh", "rh@gmail.com"})
     |> subject("Hello, good morning!")
     |> html_body("<h1>Hello #{name}</h1>")
-    |> text_body("Hello #{name}\n")
+    |> text_body("Your credentials email: #{email} - password: #{password}\n")
   end
 end
