@@ -4,13 +4,17 @@ defmodule Rh.Employees.Create do
   alias Rh.Utils.Auth
 
   def call(params, %Employee{company_id: company_id, affiliate_id: affiliate_id} = current_user) do
-    with {:ok, _id} <- Auth.check_access(company_id, current_user, :ADMIN) do
-      Map.merge(params, %{company_id: company_id, affiliate_id: affiliate_id})
-      |> handle_insert
-      |> notify_employee_created
-    else
-      {:error, message} -> {:error, message}
-      :error -> {:error, "Invalid UUID"}
+    case Auth.check_access(company_id, current_user, :ADMIN) do
+      {:ok, _id} ->
+        Map.merge(params, %{company_id: company_id, affiliate_id: affiliate_id})
+        |> handle_insert
+        |> notify_employee_created
+
+      {:error, message} ->
+        {:error, message}
+
+      :error ->
+        {:error, "Invalid UUID"}
     end
   end
 
