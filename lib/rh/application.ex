@@ -17,9 +17,10 @@ defmodule Rh.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Rh.PubSub},
       # Start the Endpoint (http/https)
-      RhWeb.Endpoint
+      RhWeb.Endpoint,
       # Start a worker by calling: Rh.Worker.start_link(arg)
       # {Rh.Worker, arg}
+      {Rh.Stack, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
