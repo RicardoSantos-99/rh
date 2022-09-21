@@ -4,7 +4,7 @@ defmodule Rh.Employees.Create do
   alias Rh.Utils.Auth
 
   def call(params, %Employee{company_id: company_id, affiliate_id: affiliate_id} = current_user) do
-    case Auth.check_access(company_id, current_user, :ADMIN) do
+    case Auth.check_access(current_user, :ADMIN) do
       {:ok, _id} ->
         Map.merge(params, %{company_id: company_id, affiliate_id: affiliate_id})
         |> handle_insert

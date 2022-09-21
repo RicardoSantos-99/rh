@@ -7,7 +7,7 @@ defmodule Rh.Affiliates.List do
   alias Rh.Utils.Auth
 
   def call(_, %Employee{company_id: company_id} = current_user) do
-    case Auth.check_access(company_id, current_user, :ADMIN) do
+    case Auth.check_access(current_user, :ADMIN) do
       {:ok, _id} ->
         company_id
         |> find_affiliate_by_company_id

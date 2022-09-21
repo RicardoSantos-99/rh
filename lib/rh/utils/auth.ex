@@ -31,6 +31,13 @@ defmodule Rh.Utils.Auth do
     end
   end
 
+  def check_access(%Employee{company_id: user_company_id, employees_type: employee_auth}, auth) do
+    case has_permission(employee_auth, auth) do
+      :permitted -> {:ok, user_company_id}
+      :no_permission -> {:error, "User does not have permission"}
+    end
+  end
+
   defp check_company(company_id, user_company_id), do: company_id == user_company_id
 
   def has_permission(employee_auth, auth) do

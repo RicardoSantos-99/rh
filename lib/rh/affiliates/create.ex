@@ -8,7 +8,7 @@ defmodule Rh.Affiliates.Create do
   alias Rh.Utils.Auth
 
   def call(params, %{company_id: company_id} = current_user) do
-    with {:ok, _id} <- Auth.check_access(company_id, current_user, :ADMIN),
+    with {:ok, _id} <- Auth.check_access(current_user, :ADMIN),
          {:ok, _uuid} <- UUID.cast(company_id) do
       params
       |> Map.put_new(:company_id, company_id)
