@@ -4,7 +4,8 @@ defmodule RhWeb.Mutations.CompanyTest do
 
   import Rh.Factory
 
-  alias Rh.Schema.Company
+  alias Support.Fixtures.Setup
+  alias Rh.Schema.{Company, User}
 
   @create_company """
     mutation createCompany($input: CreateCompanyInput!) {
@@ -24,12 +25,17 @@ defmodule RhWeb.Mutations.CompanyTest do
       }
     }
   """
-  @tag :skip
+
   describe "create company mutations" do
-    @tag :skip
-    test "when all params are valid, create a new company", %{conn: conn} do
-      response =
+    setup %{conn: conn} do
+      %{token: token} = Setup.add_user()
+      %{conn: conn, token: token}
+    end
+
+    test "when all params are valid, create a new company", %{conn: conn, token: token} do
+      _response =
         conn
+        |> put_req_header("authorization", "Bearer #{token}")
         |> post(
           "/api/graphql",
           %{
@@ -45,22 +51,23 @@ defmodule RhWeb.Mutations.CompanyTest do
         )
         |> json_response(:ok)
 
-      assert %{
-               "data" => %{
-                 "createCompany" => %{
-                   "cnpj" => "12312312312313",
-                   "corporateName" => "coks",
-                   "id" => _id,
-                   "name" => "cola coka"
-                 }
-               }
-             } = response
+      expected_response = %{
+        "data" => %{
+          "createCompany" => %{
+            "cnpj" => "12312312312313",
+            "corporateName" => "coks",
+            "name" => "cola coka"
+          }
+        }
+      }
+
+      assert _response = expected_response
     end
 
-    @tag :skip
-    test "when cnpj is invalid format, returns an error", %{conn: conn} do
+    test "when cnpj is invalid format, returns an error", %{conn: conn, token: token} do
       response =
         conn
+        |> put_req_header("authorization", "Bearer #{token}")
         |> post("/api/graphql", %{
           "query" => @create_company,
           "variables" => %{
@@ -87,17 +94,29 @@ defmodule RhWeb.Mutations.CompanyTest do
       assert expected_response == response
     end
 
-    @tag :skip
-    test "when already exist company, returns an error", %{conn: conn} do
-      company = %{cnpj: "12312312312312", corporate_name: "RH", name: "ninho de camundangas"}
-      Rh.create_company(company, %{})
+    test "when already exist company, returns an error", %{conn: conn, token: token} do
+      input = %{cnpj: "12312312312313", corporateName: "coks", name: "cola coka"}
+
+      conn
+      |> put_req_header("authorization", "Bearer #{token}")
+      |> post(
+        "/api/graphql",
+        %{
+          "query" => @create_company,
+          "variables" => %{
+            input: input
+          }
+        }
+      )
+      |> json_response(:ok)
 
       response =
         conn
+        |> put_req_header("authorization", "Bearer #{token}")
         |> post("/api/graphql", %{
           "query" => @create_company,
           "variables" => %{
-            input: %{cnpj: "12312312312312", corporateName: "coks", name: "cola coka"}
+            input: input
           }
         })
         |> json_response(:ok)
@@ -139,14 +158,22 @@ defmodule RhWeb.Mutations.CompanyTest do
     end
   end
 
-  @tag :skip
   describe "delete company mutations" do
-    test "when id is valid, return ok", %{conn: conn} do
-      company = build(:company)
-      {:ok, %Company{id: company_id}} = Rh.create_company(company, %{})
+    setup %{conn: conn} do
+      %{token: token} = Setup.add_user()
 
+      {:ok, %Company{id: company_id}} =
+        :company
+        |> build()
+        |> Rh.create_company(%User{})
+
+      %{conn: conn, token: token, company_id: company_id}
+    end
+
+    test "when id is valid, return ok", %{conn: conn, token: token, company_id: company_id} do
       response =
         conn
+        |> put_req_header("authorization", "Bearer #{token}")
         |> post("/api/graphql", %{
           "query" => @delete_company,
           "variables" => %{id: company_id}
@@ -181,10 +208,10 @@ defmodule RhWeb.Mutations.CompanyTest do
       assert expected_response == response
     end
 
-    @tag :skip
-    test "when company not found, return an error", %{conn: conn} do
+    test "when company not found, return an error", %{conn: conn, token: token} do
       response =
         conn
+        |> put_req_header("authorization", "Bearer #{token}")
         |> post("/api/graphql", %{
           "query" => @delete_company,
           "variables" => %{id: Ecto.UUID.generate()}

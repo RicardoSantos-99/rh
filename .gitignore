@@ -23,3 +23,4 @@ erl_crash.dump
 rh-*.tar
 
 **/*.secret.exs
+data

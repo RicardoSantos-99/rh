@@ -3,7 +3,7 @@ import Config
 config :git_ops,
   mix_project: Mix.Project.get!(),
   changelog_file: "CHANGELOG.md",
-  repository_url: "https://github.com/my_user/my_repo",
+  repository_url: "https://github.com/RicardoSantos-99/rh",
   types: [
     # Makes an allowed commit type called `tidbit` that is not
     # shown in the changelog

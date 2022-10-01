@@ -4,6 +4,9 @@ defmodule RhWeb.Queries.CompanyTest do
 
   import Rh.Factory
 
+  alias Support.Fixtures.Setup
+  alias Rh.Schema.{Company, User}
+
   @get_company_by_id """
     query getCompany($id: UUID4!) {
       getCompany(id: $id) {
@@ -39,20 +42,23 @@ defmodule RhWeb.Queries.CompanyTest do
 
   describe "Company queries" do
     setup %{conn: conn} do
-      company_params = build(:company)
+      %{token: token} = Setup.add_user()
 
-      {:ok, company} = Rh.create_company(company_params, %{})
+      {:ok, %Company{id: company_id, cnpj: cnpj}} =
+        :company
+        |> build()
+        |> Rh.create_company(%User{})
 
-      {:ok, conn: conn, company: company}
+      %{conn: conn, company_id: company_id, token: token, cnpj: cnpj}
     end
 
-    @tag :skip
-    test "find company by id, return company", %{conn: conn, company: %{id: id}} do
+    test "find company by id, return company", %{conn: conn, company_id: company_id, token: token} do
       response =
         conn
+        |> put_req_header("authorization", "Bearer #{token}")
         |> post("/api/graphql", %{
           "query" => @get_company_by_id,
-          "variables" => %{id: id}
+          "variables" => %{id: company_id}
         })
         |> json_response(:ok)
 
@@ -61,17 +67,22 @@ defmodule RhWeb.Queries.CompanyTest do
                  "getCompany" => %{
                    "cnpj" => "12312312312312",
                    "corporateName" => "RH",
-                   "id" => id,
+                   "id" => company_id,
                    "name" => "ninho de camundangas"
                  }
                }
              }
     end
 
-    @tag :skip
-    test "find company by cnpj, return company", %{conn: conn, company: %{cnpj: cnpj, id: id}} do
+    test "find company by cnpj, return company", %{
+      conn: conn,
+      token: token,
+      cnpj: cnpj,
+      company_id: id
+    } do
       response =
         conn
+        |> put_req_header("authorization", "Bearer #{token}")
         |> post("/api/graphql", %{
           "query" => @get_company_by_cnpj,
           "variables" => %{cnpj: cnpj}
@@ -90,10 +101,14 @@ defmodule RhWeb.Queries.CompanyTest do
              }
     end
 
-    @tag :skip
-    test "find all companies, return a list of all companies", %{conn: conn, company: %{id: id}} do
+    test "find all companies, return a list of all companies", %{
+      conn: conn,
+      token: token,
+      company_id: id
+    } do
       response =
         conn
+        |> put_req_header("authorization", "Bearer #{token}")
         |> post("/api/graphql", %{
           "query" => @list_companies
         })

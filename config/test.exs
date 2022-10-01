@@ -30,3 +30,5 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :rh, env: "uCx4idbEyU4kgMypH0ezMpHefEZJBqpHd6/yBXQ3omS2P25s7pdR+Vqk+Y5UUJMr"
