@@ -69,7 +69,8 @@ defmodule Rh.MixProject do
       {:git_ops, "~> 2.4.5", only: [:dev]},
       {:todo, "~> 1.5"},
       {:enum_type, "~> 1.1.0"},
-      {:passgen, "~> 0.1.1"}
+      {:passgen, "~> 0.1.1"},
+      {:pre_commit, "~> 0.3.4", only: :dev}
     ]
   end
 
