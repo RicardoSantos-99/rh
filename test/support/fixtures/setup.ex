@@ -1,6 +1,6 @@
 defmodule Support.Fixtures.Setup do
+  alias Rh.Modules.Admin.Users, as: CreateUser
   alias Rh.Schema.User
-  alias Rh.Users.Create, as: CreateUser
 
   def add_user do
     {:ok, %User{password: password, email: email}} =

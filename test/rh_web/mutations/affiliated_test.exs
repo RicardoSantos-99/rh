@@ -4,6 +4,10 @@ defmodule RhWeb.Mutations.AffiliatedTest do
 
   import Rh.Factory
 
+  alias Ecto.UUID
+  alias Support.Fixtures.Setup
+  alias Rh.Schema.{Company, User}
+
   @create_affiliated """
     mutation createAffiliate($input: CreateAffiliateInput!) {
       createAffiliate(input: $input) {
@@ -23,15 +27,18 @@ defmodule RhWeb.Mutations.AffiliatedTest do
 
   describe "create affiliate mutations" do
     setup %{conn: _conn} do
-      company_params = build(:company)
+      %{token: _token} = Setup.add_user()
 
-      {:ok, company} = Rh.create_company(company_params, %{})
+      {:ok, %Company{id: _company_id}} =
+        :company
+        |> build()
+        |> Rh.create_company(%User{})
 
       conn =
         build_conn()
         |> put_req_header("authorization", "Bearer token")
 
-      {:ok, conn: conn, company: company}
+      {:ok, conn: conn}
     end
 
     @tag :skip
@@ -143,7 +150,7 @@ defmodule RhWeb.Mutations.AffiliatedTest do
               input: %{
                 name: "vli",
                 cnpj: "12341234123412",
-                company_id: Ecto.UUID.generate()
+                company_id: UUID.generate()
               }
             }
           }

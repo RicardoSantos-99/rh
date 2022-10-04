@@ -24,23 +24,25 @@ defmodule Rh do
   """
 
   alias Ecto.UUID
-  alias Rh.{Affiliates, Companies, CostCenters, Departments, Employees, Occupations, Users}
+
+  alias Rh.Modules.Company.{Affiliates, CostCenters, Departments, Employees, Occupations}
+  alias Rh.Modules.Admin.{Companies, Users}
   alias Rh.Schema.{Affiliate, Company, Employee, Occupation, User}
 
   @spec create_company(Company.t(), User.t()) :: Company.t()
-  defdelegate create_company(params, current_user), to: Companies.Create, as: :call
+  defdelegate create_company(params, current_user), to: Companies, as: :create_company
 
   @spec get_company(UUID.t(), User.t()) :: Company.t()
-  defdelegate get_company(id, current_user), to: Companies.Get, as: :by_id
+  defdelegate get_company(id, current_user), to: Companies, as: :find_by_id
 
   @spec get_company_by_cnpj(String.t(), User.t()) :: Company.t()
-  defdelegate get_company_by_cnpj(cnpj, current_user), to: Companies.Get, as: :by_cnpj
+  defdelegate get_company_by_cnpj(cnpj, current_user), to: Companies, as: :find_by_cnpj
 
   @spec delete_company(UUID.t(), User.t()) :: Company.t()
-  defdelegate delete_company(id, current_user), to: Companies.Delete, as: :call
+  defdelegate delete_company(id, current_user), to: Companies, as: :delete_company
 
   @spec list_companies(User.t()) :: [Company.t()]
-  defdelegate list_companies(current_user), to: Companies.List, as: :call
+  defdelegate list_companies(current_user), to: Companies, as: :list
 
   @spec create_occupation(Occupation.t()) :: Occupation.t()
   defdelegate create_occupation(params), to: Occupations.Create, as: :call
@@ -89,35 +91,7 @@ defmodule Rh do
   defdelegate list_employees(current_user), to: Employees.List, as: :call
 
   @spec user_login(%{email: String.t(), password: String.t()}) :: String.t()
-  defdelegate user_login(params), to: Users.Create, as: :login
-
-  @spec user_create_employee(Employee.t(), User.t()) :: Employee.t()
-  defdelegate user_create_employee(params, current_user), to: Users.Create, as: :employee
-
-  @spec user_create_affiliate(Affiliate.t(), User.t()) :: Affiliate.t()
-  defdelegate user_create_affiliate(params, current_user), to: Users.Create, as: :affiliate
-
-  @spec user_create_company(Company.t(), User.t()) :: Company.t()
-  defdelegate user_create_company(params, current_user), to: Users.Create, as: :company
-
-  @spec user_create_occupation(Occupation.t(), User.t()) :: Occupation.t()
-  defdelegate user_create_occupation(params, current_user), to: Users.Create, as: :occupation
-
-  @spec user_list_companies(User.t()) :: [Company.t()]
-  defdelegate user_list_companies(current_user), to: Users.List, as: :companies
-
-  @spec user_list_affiliates(UUID.t(), User.t()) :: [Affiliate.t()]
-  defdelegate user_list_affiliates(company_id, current_user), to: Users.List, as: :affiliates
-
-  @spec user_list_employees_by_affiliate(UUID.t(), User.t()) :: [Employee.t()]
-  defdelegate user_list_employees_by_affiliate(affiliate_id, current_user),
-    to: Users.List,
-    as: :employees_by_affiliate
-
-  @spec user_list_employees_by_company(UUID.t(), User.t()) :: [Employee.t()]
-  defdelegate user_list_employees_by_company(company_id, current_user),
-    to: Users.List,
-    as: :employees_by_company
+  defdelegate user_login(params), to: Users, as: :login
 
   # defdelegate logout(current_user), to: Users.Update, as: :revoke_token
 end

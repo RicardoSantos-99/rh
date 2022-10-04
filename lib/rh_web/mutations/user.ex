@@ -17,25 +17,25 @@ defmodule RhWeb.Mutations.User do
       middleware TranslateErrors
     end
 
-    field :user_create_employee, type: :employee do
-      arg :input, non_null(:user_create_employee)
+    # field :user_create_employee, type: :employee do
+    #   arg :input, non_null(:user_create_employee)
 
-      resolve &UserResolver.user_create_employee/3
-      middleware TranslateErrors
-    end
+    #   resolve &UserResolver.user_create_employee/3
+    #   middleware TranslateErrors
+    # end
 
-    field :user_create_affiliate, type: :employee do
-      arg :input, non_null(:user_create_affiliate)
+    # field :user_create_affiliate, type: :employee do
+    #   arg :input, non_null(:user_create_affiliate)
 
-      resolve &UserResolver.user_create_affiliate/3
-      middleware TranslateErrors
-    end
+    #   resolve &UserResolver.user_create_affiliate/3
+    #   middleware TranslateErrors
+    # end
 
-    field :user_create_company, type: :company do
-      arg :input, non_null(:create_company_input)
+    # field :user_create_company, type: :company do
+    #   arg :input, non_null(:create_company_input)
 
-      resolve &UserResolver.user_create_company/3
-      middleware TranslateErrors
-    end
+    #   resolve &UserResolver.user_create_company/3
+    #   middleware TranslateErrors
+    # end
   end
 end
