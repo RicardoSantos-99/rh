@@ -1,39 +1,35 @@
 defmodule Rh.Modules.Admin.Companies do
   alias Ecto.UUID
   alias Rh.Repo
-  alias Rh.Schema.{Company, User}
+  alias Rh.Schema.Company
 
-  @spec create_company(Company.t(), User.t()) :: Company.t()
-  def create_company(params, %User{}) do
+  @spec create_company(Company.t()) :: Company.t()
+  def create_company(params) do
     params
     |> Company.changeset()
     |> Repo.insert()
   end
 
-  def create_company(_params, _), do: {:error, "Access denied"}
-
-  def delete_company(id, %User{}) do
+  def delete_company(id) do
     id
     |> UUID.cast()
     |> handle_delete_response()
   end
 
-  def delete_company(_params, _), do: {:error, "Access denied"}
-
-  def find_by_id(id, _current_user) do
+  def find_by_id(id) do
     id
     |> UUID.cast()
     |> handle_find_response()
   end
 
-  def find_by_cnpj(cnpj, _current_user) do
+  def find_by_cnpj(cnpj) do
     case Repo.get_by(Company, cnpj: cnpj) do
       nil -> {:error, "Company not found"}
       company -> {:ok, company}
     end
   end
 
-  def list(_current_user) do
+  def list do
     Repo.all(Company)
     |> handle_list_response()
   end

@@ -4,8 +4,8 @@ defmodule RhWeb.Mutations.CompanyTest do
 
   import Rh.Factory
 
+  alias Rh.Schema.Company
   alias Support.Fixtures.Setup
-  alias Rh.Schema.{Company, User}
 
   @create_company """
     mutation createCompany($input: CreateCompanyInput!) {
@@ -165,7 +165,7 @@ defmodule RhWeb.Mutations.CompanyTest do
       {:ok, %Company{id: company_id}} =
         :company
         |> build()
-        |> Rh.create_company(%User{})
+        |> Rh.create_company()
 
       %{conn: conn, token: token, company_id: company_id}
     end

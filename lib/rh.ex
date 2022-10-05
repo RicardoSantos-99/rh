@@ -27,22 +27,22 @@ defmodule Rh do
 
   alias Rh.Modules.Company.{Affiliates, CostCenters, Departments, Employees, Occupations}
   alias Rh.Modules.Admin.{Companies, Users}
-  alias Rh.Schema.{Affiliate, Company, Employee, Occupation, User}
+  alias Rh.Schema.{Affiliate, Company, Employee, Occupation}
 
-  @spec create_company(Company.t(), User.t()) :: Company.t()
-  defdelegate create_company(params, current_user), to: Companies, as: :create_company
+  @spec create_company(Company.t()) :: Company.t()
+  defdelegate create_company(params), to: Companies, as: :create_company
 
-  @spec get_company(UUID.t(), User.t()) :: Company.t()
-  defdelegate get_company(id, current_user), to: Companies, as: :find_by_id
+  @spec get_company(UUID.t()) :: Company.t()
+  defdelegate get_company(id), to: Companies, as: :find_by_id
 
-  @spec get_company_by_cnpj(String.t(), User.t()) :: Company.t()
-  defdelegate get_company_by_cnpj(cnpj, current_user), to: Companies, as: :find_by_cnpj
+  @spec get_company_by_cnpj(String.t()) :: Company.t()
+  defdelegate get_company_by_cnpj(cnpj), to: Companies, as: :find_by_cnpj
 
-  @spec delete_company(UUID.t(), User.t()) :: Company.t()
-  defdelegate delete_company(id, current_user), to: Companies, as: :delete_company
+  @spec delete_company(UUID.t()) :: Company.t()
+  defdelegate delete_company(id), to: Companies, as: :delete_company
 
-  @spec list_companies(User.t()) :: [Company.t()]
-  defdelegate list_companies(current_user), to: Companies, as: :list
+  @spec list_companies :: [Company.t()]
+  defdelegate list_companies, to: Companies, as: :list
 
   @spec create_occupation(Occupation.t()) :: Occupation.t()
   defdelegate create_occupation(params), to: Occupations.Create, as: :call

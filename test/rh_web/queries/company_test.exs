@@ -4,8 +4,8 @@ defmodule RhWeb.Queries.CompanyTest do
 
   import Rh.Factory
 
+  alias Rh.Schema.Company
   alias Support.Fixtures.Setup
-  alias Rh.Schema.{Company, User}
 
   @get_company_by_id """
     query getCompany($id: UUID4!) {
@@ -47,7 +47,7 @@ defmodule RhWeb.Queries.CompanyTest do
       {:ok, %Company{id: company_id, cnpj: cnpj}} =
         :company
         |> build()
-        |> Rh.create_company(%User{})
+        |> Rh.create_company()
 
       %{conn: conn, company_id: company_id, token: token, cnpj: cnpj}
     end

@@ -5,8 +5,8 @@ defmodule RhWeb.Mutations.AffiliatedTest do
   import Rh.Factory
 
   alias Ecto.UUID
+  alias Rh.Schema.Company
   alias Support.Fixtures.Setup
-  alias Rh.Schema.{Company, User}
 
   @create_affiliated """
     mutation createAffiliate($input: CreateAffiliateInput!) {
@@ -32,7 +32,7 @@ defmodule RhWeb.Mutations.AffiliatedTest do
       {:ok, %Company{id: _company_id}} =
         :company
         |> build()
-        |> Rh.create_company(%User{})
+        |> Rh.create_company()
 
       conn =
         build_conn()
@@ -235,7 +235,7 @@ defmodule RhWeb.Mutations.AffiliatedTest do
     setup %{conn: conn} do
       company_params = build(:company)
 
-      {:ok, company} = Rh.create_company(company_params, %{})
+      {:ok, company} = Rh.create_company(company_params)
 
       {:ok, affiliate} =
         build(:affiliated, %{company_id: company.id})

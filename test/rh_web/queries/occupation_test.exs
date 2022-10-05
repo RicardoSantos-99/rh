@@ -24,7 +24,7 @@ defmodule RhWeb.Queries.OccupationTest do
     setup %{conn: conn} do
       company_params = build(:company)
 
-      {:ok, company} = Rh.create_company(company_params, %{})
+      {:ok, company} = Rh.create_company(company_params)
 
       {:ok, occupation} =
         build(:occupation, %{company_id: company.id})
