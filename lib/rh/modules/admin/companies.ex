@@ -10,18 +10,21 @@ defmodule Rh.Modules.Admin.Companies do
     |> Repo.insert()
   end
 
+  @spec delete_company(UUID.t()) :: {:ok, Company.t()} | {:error, String.t()}
   def delete_company(id) do
     id
     |> UUID.cast()
     |> handle_delete_response()
   end
 
+  @spec find_by_id(UUID.t()) :: {:ok, Company.t()} | nil
   def find_by_id(id) do
     id
     |> UUID.cast()
     |> handle_find_response()
   end
 
+  @spec find_by_cnpj(String.t()) :: {:ok, Company.t()} | nil
   def find_by_cnpj(cnpj) do
     case Repo.get_by(Company, cnpj: cnpj) do
       nil -> {:error, "Company not found"}
@@ -29,6 +32,7 @@ defmodule Rh.Modules.Admin.Companies do
     end
   end
 
+  @spec list :: [Company.t()]
   def list do
     Repo.all(Company)
     |> handle_list_response()
